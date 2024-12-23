@@ -1,0 +1,266 @@
+{% extends 'owner/base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+	<!-- main content -->
+	<main class="main">
+		<div class="container-fluid">
+			<div class="row">
+
+				<!-- main title -->
+				<div class="col-12">
+					<div class="main__title">
+						<h2>Pending Orders</h2>
+						{% include '../includes/alert.html' %}
+
+						<span class="main__title-stat">{{count}} total</span>
+
+
+						<div class="main__title-wrap">
+							<!-- filter sort -->
+							{% comment %} <div class="filter" id="filter__sort">
+								<span class="filter__item-label">Sort by:</span>
+
+								<div class="filter__item-btn dropdown-toggle" role="navigation" id="filter-sort" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									<input type="button" value="Date created">
+									<span></span>
+								</div>
+
+								<ul class="filter__item-menu dropdown-menu scrollbar-dropdown" aria-labelledby="filter-sort">
+									<li>Date created</li>
+									<li>Rating</li>
+									<li>Views</li>
+								</ul>
+							</div> {% endcomment %}
+							<!-- end filter sort -->
+
+						<!--	 search -->
+
+
+							<form style="width:500px;" method="POST" class="main__title-form">
+								{% csrf_token %}
+								<input name="keyword" style="margin-right:20px;" type="text" placeholder="Find Products..">
+								<button style="width:100px;height:45px;border-radius:0%;" class="sign__btn" type="submit">Search</button>
+
+							</form>
+							<!-- end search -->
+						</div>
+					</div>
+				</div>
+				<!-- end main title -->
+
+
+
+				<!-- users -->
+				<div class="col-12">
+				{% if error %}
+				<p style="color:red;">{{error}}</p>
+				{% endif %}
+					<div class="main__table-wrap">
+						<table class="main__table">
+							<thead>
+
+								<tr>
+									<th>ID</th>
+									<th>Product Name</th>
+									<th>Product Price</th>
+									<th>Product Quantity</th>
+									<th>Total Price</th>
+									<th>Personalization</th>
+									<th>Buyer Name</th>
+									<th>Buyer Email</th>
+									<th>Buyer Phone</th>
+									<th>Buyer Country</th>
+									<th>Buyer State</th>
+									<th>Buyer City</th>
+									<th>Buyer Address Line1</th>
+									<th>Buyer Address Line2</th>
+									<th>ACTIONS</th>
+								</tr>
+
+							</thead>
+
+							<tbody>
+								<tr>
+
+									{% for order in orders %}
+									<td>
+										<div class="main__table-text">{{order.id}}</div>
+									</td>
+									<td>
+										<div class="main__table-text"><a href="{% url 'get_product' product_name=order.product.slug %}">{{order.product.product_name|truncatechars:30}}</a></div>
+									</td>
+
+									<td>
+										<div class="main__table-text">€ {{order.product.price}}</div>
+									</td>
+
+									<td>
+										<div class="main__table-text">{{order.quantity}}</div>
+									</td>
+										<td>
+										<div class="main__table-text">{{order.total_price}}</div>
+									</td>
+
+									<td>
+
+										<div class="main__table-text">
+										{% if order.personalize %}
+										{{order.personalize}}
+										{% else %}
+										None
+										{% endif %}
+										</div>
+									</td>
+										<td>
+										<div class="main__table-text">{{order.order.first_name}} {{order.order.last_name}}</div>
+									</td>
+									<td>
+										<div class="main__table-text">{{order.order.email}}</div>
+									</td>
+									<td>
+										<div class="main__table-text">{{order.order.phone}}</div>
+									</td>
+									<td>
+										<div class="main__table-text">{{order.order.country}}</div>
+									</td>
+									<td>
+										<div class="main__table-text">{{order.order.state}}</div>
+									</td>
+									<td>
+										<div class="main__table-text">{{order.order.city}}</div>
+									</td>
+									<td>
+										<div class="main__table-text">{{order.order.address_line_1}}</div>
+									</td>
+									<td>
+										<div class="main__table-text">{{order.order.address_line_2}}</div>
+									</td>
+
+									<td>
+										<div class="main__table-btns">
+											<a class="form__btn" href="{% url 'accept_product_order' order_product_id=order.id %}" >
+											Accept Order
+											</a>
+
+											<a style="margin-left:5px; " class="form__btn" href="{% url 'cancel_product_order' order_product_id=order.id %}" class="btn btn-primary">
+											Cancel Order
+											</a>
+
+										</div>
+									</td>
+								</tr>
+								{% endfor %}
+								</tbody>
+						</table>
+					</div>
+				</div>
+				<!-- end users -->
+
+				<!-- paginator -->
+				{% comment %} <div class="col-12">
+					<div class="paginator">
+						<span class="paginator__pages">10 from 14 452</span>
+
+						<ul class="paginator__paginator">
+							<li>
+								<a href="#">
+									<svg width="14" height="11" viewBox="0 0 14 11" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0.75 5.36475L13.1992 5.36475" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M5.771 10.1271L0.749878 5.36496L5.771 0.602051" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+								</a>
+							</li>
+							<li class="active"><a href="#">1</a></li>
+							<li><a href="#">2</a></li>
+							<li><a href="#">3</a></li>
+							<li><a href="#">4</a></li>
+							<li>
+								<a href="#">
+									<svg width="14" height="11" viewBox="0 0 14 11" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M13.1992 5.3645L0.75 5.3645" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M8.17822 0.602051L13.1993 5.36417L8.17822 10.1271" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div> {% endcomment %}
+				<!-- end paginator -->
+	<style>
+				.active{
+				background-color:#ff0000;
+				padding-left:10px;
+				margin-right:10px;
+				margin-left:10px;
+				}
+				</style>
+				<div class="col-12">
+					<div class="paginator">
+						<span class="paginator__pages">10 from {{count}}</span>
+
+						<ul class="catalog__paginator">
+							<nav class="mt-4" aria-label="Page navigation sample">
+								{% if orders.has_other_pages %}
+								<ul class="pagination" style='display: flex;
+								margin-bottom: 13px;'>
+									{% if orders.has_previous %}
+									<li class="page-item "><a class="page-link"
+											href="?page={{orders.previous_page_number}}" style='color:white; margin-right:13px;'>Previous</a></li>
+									{% else %}
+									<li class="page-item disabled"><a class="page-link" style='color:white; margin-right:13px;' href="">Previous</a></li>
+									{% endif %}
+
+									{% for i in orders.paginator.page_range %}
+									{% if orders.number == i %}
+									<li class="page-item active" ><a class="page-link" style='color:white; margin-right:13px;'href="#">{{i}}</a></li>
+									{% else %}
+									<li class="page-item "><a class="page-link" style='color:white; margin-right:13px;' href="?page={{i}}">{{i}}</a></li>
+									{% endif %}
+									{% endfor %}
+									{% if orders.has_next %}
+									<li class="page-item"><a class="page-link" href="?page={{orders.next_page_number}}" style='color:white; margin-left:13px;'>Next</a></li>
+									{% else %}
+									<li class="page-item disabled"><a class="page-link" style='color:white;' href="#">Next</a></li>
+									{% endif %}
+								</ul>
+								{% endif %}
+							</nav>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+	<!-- end main content -->
+
+	<!-- modal status -->
+	<div id="modal-status" class="zoom-anim-dialog mfp-hide modal">
+		<h6 class="modal__title">Status change</h6>
+
+		<p class="modal__text">Are you sure about immediately change status?</p>
+
+		<div class="modal__btns">
+			<button class="modal__btn modal__btn--apply" type="button">Apply</button>
+			<button class="modal__btn modal__btn--dismiss" type="button">Dismiss</button>
+		</div>
+	</div>
+	<!-- end modal status -->
+
+	<!-- modal delete -->
+	<div id="modal-delete" class="zoom-anim-dialog mfp-hide modal">
+		<h6 class="modal__title">Item delete</h6>
+
+		<p class="modal__text">Are you sure to permanently delete this item?</p>
+
+		<div class="modal__btns">
+			<button class="modal__btn modal__btn--apply" type="button">Delete</button>
+			<button class="modal__btn modal__btn--dismiss" type="button">Dismiss</button>
+		</div>
+	</div>
+	<!-- end modal delete -->
+
+
+	<script>
+		function confirmDelete() {
+			return confirm("Are you sure you want to delete?");
+		}
+	</script>
+
+	{% endblock %}

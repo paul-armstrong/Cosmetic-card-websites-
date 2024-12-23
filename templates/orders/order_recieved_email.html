@@ -1,0 +1,102 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        /* Main container styling */
+        .container {
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            background-color: #f8f8f8;
+        }
+
+        /* Email content container */
+        .email-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+        /* Header section */
+        .header {
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        /* Company logo */
+        .logo {
+            max-width: 150px;
+        }
+
+        /* Heading */
+        .heading {
+            font-size: 24px;
+            color: #333;
+            margin: 20px 0;
+        }
+
+        /* Subheading */
+        .subheading {
+            font-size: 18px;
+            color: #555;
+            margin: 10px 0;
+        }
+
+        /* Body text */
+        .body-text {
+            font-size: 16px;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Call-to-action button */
+
+        .ii a[href] {
+            color: white
+        }
+        .cta-button {
+            display: inline-block;
+            background-color:#ff0000;
+
+            color: white!important;
+            text-decoration: none;
+            padding: 12px 24px;
+            font-weight: bold;
+        }
+
+        /* Footer section */
+        .footer {
+            text-align: center;
+            padding: 20px 0;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="email-container">
+            <div class="header">
+                <img src="https://maplecourtyarddesigns.co.uk/static/img/image.png"  alt="Company Logo" class="logo">
+                <h1 class="heading">Order</h1>
+                <p class="subheading">Welcome to our MapleCourtYard.</p>
+            </div>
+            <div class="body-text">
+
+                <p>Hello {{user.first_name}},</p>
+                {% autoescape off %}
+                <p>Hi {{user.first_name}},</p>
+                <p>YOUR ORDER HAS BEEN RECEIVED</p>
+                <p>Order Number: {{order.order_number}}</p>
+                {% endautoescape %}
+            </div>
+            <div class="footer">
+                <p>If you have any questions, please contact our support team at support@company.com.</p>            </div>
+        </div>
+    </div>
+</body>
+</html>

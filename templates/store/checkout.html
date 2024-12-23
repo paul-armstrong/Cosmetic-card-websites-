@@ -1,0 +1,379 @@
+{% extends 'base.html' %}
+
+{% block style %}
+<style>
+    @media only screen and (max-width:1380px){
+        
+        
+        .cart-item__quantity {
+            min-width:0px!important;
+        }
+    }
+
+
+    @media only screen and (max-width: 1200px) {
+        .cart--desktop .cart-item__quantity {
+            min-width: 0px!important;
+        }
+        .align{
+            padding:0!important;
+        }
+        .cart-item__price{
+            display:none!important;
+        } 
+        
+    }
+
+    @media only screen and (max-width: 940px) {
+        .cart--desktop .cart-item__quantity {
+            min-width: 0px!important;
+        }
+        .align{
+            padding:0!important;
+        }
+        .paragraph{
+            display:none!important;
+        }
+        
+    }
+    @media only screen and (max-width: 800px) {
+        .product__showcase{
+            width:100%!important;
+        }
+        .grid{
+            display:block;
+        }
+        .cart-item__subtotal {
+            margin:0px !important;
+        }
+        .cart--desktop{
+            display:none;
+        }
+
+        .cart--mobile{
+            display:block;
+        }
+
+    }
+       
+   
+
+    
+
+    @media only screen and (max-width:500px){
+       
+    }
+
+</style>
+{% endblock %}
+
+{% block content %}
+
+ {% include 'includes/header.html' %}
+ <body class="kagami--v5 template-cart ">
+<div id="shopify-section-custom-product-template-XL" class="shopify-section">
+    <header class="page__header ">
+
+        <div class="page__header-wrapper page__header-wrapper_cart">
+          <div class="container">
+            
+              <h1 class="page__title">
+                Your Shipping address
+              </h1>           
+            
+          </div>
+        </div>
+      </header>
+
+    
+    <div class="product" id="custom-product-template-XL-product-6782274044064" data-product="6782274044064">
+        <div id="product_details" class="product__details">
+
+
+            <div class="inner inner-product">
+                <div class="grid">
+                    <div class="product__showcase grid__cell 3/5--lap-and-up " style="width:50%;">
+                        <div class="container container--shrink">
+                            
+                            <form method="post" action="{% url 'checkout' %}"
+                                id="customer_login" 
+                                class="form--shrinked">
+
+                                    {% csrf_token %}
+                                
+                                    
+                                    <h2 class="n8k95w1 _1fragemms n8k95w2">Delivery</h2>
+
+
+                                <div class="form__control ">
+                                    <input type="text" id="customer__email" name="country" required="required"
+                                        placeholder="Enter country..">
+
+                                    <div style="display: flex;margin-top:10px;">
+                                        <input type="text" id="customer__email" name="first_name"
+                                            required="required" placeholder="first name">
+                                        &nbsp;
+                                        <input type="text" id="customer__password" name="last_name"
+                                            required="required" placeholder="last name">
+
+                                    </div>
+                                    <div style="margin-top: 10px;">
+                                        <input type="text" id="customer__email" name="company"
+                                            placeholder="company(optional)">
+                                    </div>
+                                    <div style="margin-top: 10px;">
+                                        <input type="text" id="customer__email" name="phone"
+                                            placeholder="phone" required='true'>
+                                    </div>
+
+                                    <div style="margin-top: 10px;">
+                                        <input type="text" id="customer__email" name="address_line_1" required="required"
+                                            placeholder="address 1">
+                                    </div>
+
+
+                                    <div style="margin-top: 10px;">
+                                        <input type="text" id="customer__email" name="address_line_2" 
+                                            placeholder="address 2(optional)">
+                                    </div>
+                                    <div style="margin-top: 10px;">
+                                        <input type="email" id="customer__email" name="email" 
+                                            placeholder="Email" required>
+                                    </div>
+
+                                    <div style="display: flex;margin-top:10px;">
+                                        <input type="city" id="customer__email" name="city" required="required"
+                                            placeholder="city">
+                                        &nbsp;
+                                        <input type="text" id="customer__password" name="postal_code"
+                                            required="required" placeholder="postal code ">
+
+                                    </div>
+
+
+
+                                </div>
+                                <div class="delivery_date">
+                                    <p>Get it by <span id="toDate_48"></span> with FREE UK Delivery.<br>
+                                        Faster UK delivery options
+                                        are available.
+                                        <span class="more_info" id="scroll-delivery">More info</span>
+                                    </p>
+                                </div>
+                                <div class="product_personalise_button">
+                                    <div class="product__buy">
+        
+                                    </div>
+        
+                                    <div class="product__buy">
+                                        <button type="submit"
+                                            class="button button--secondary button--full button--no-disabled-opacity product__add-to-cart">
+                                            Item order</button>
+                                    </div>
+                                </div>
+                            
+
+                            </form>
+                        </div>
+                    </div>
+
+
+                    <div class=" product__info grid__cell 2/5--lap-and-up">
+                        <div class="cart--desktop">
+
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Product</th>
+                                        <th class='paragraph'></th>
+                                        
+                                        <th>Quantity</th>
+                                        <th class="cart-item__price">Price</th>
+                                        <th class='align'>Item total</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+
+                                    {% for cart_item in cart_items %}
+                                    
+                                    <tr data-variant-id="11281174462500" data-index="1">
+                                        <td class="cart-item__product">
+                                            <a href="{% url 'get_product' cart_item.product.slug %}"
+                                                class="cart-item__link">
+                                                {% if '/static/' in cart_item.product.image.url %}
+                                                <img class="cart-item__image"
+
+                                                    src="{{cart_item.product.image}}">
+                                                    {% else %}
+                                                    <img class="cart-item__image"
+
+                                                    src="{{cart_item.product.image.url}}">
+                                                    {% endif %}
+                                            </a>
+                                        </td>
+
+                                        <td class="cart-item__info table__left paragraph ">
+
+
+                                            <p><a class="cart-item__title"
+                                                    href="{% url 'get_product' cart_item.product.slug %}">
+                                                {{cart_item.product|truncatechars:55}}    
+                                                </a></p>
+                                          
+                                            <div id="cart_personalisation_1"
+                                                style="height: 0; overflow: hidden; transition: height 0.5s ease;">
+
+
+
+
+                                                <p>
+                                                    <span class="p_first">Cover Message:</span>
+
+                                                    <br>
+                                                    <span class="p_last">HAPPY BIRTHDAY</span>
+
+                                                </p>
+                                            </div>
+
+                                        </td>
+
+                                       
+
+                                        <td class="cart-item__quantity">
+                                            <span>{{cart_item.quantity}}</span>
+
+
+                                        </td>
+
+                                        <td class="cart-item cart-item__price" data-money-convertible="" data-currency-gbp="£18.75" data-currency-cad="$32.16" data-currency="CAD">£{{cart_item.product.price}} each</td>
+                                        <td class="cart-item__subtotal" data-money-convertible="" data-currency-gbp="£18.75" data-currency-cad="$32.16" data-currency="CAD">£{{cart_item.subtotal}}</td>
+
+                                       
+                                    </tr>
+
+                                    {% endfor %}
+
+                                </tbody>
+                            </table>
+                        </div>
+                        
+            <div class="cart--mobile">
+                <ul class="cart__items">
+                    {% for cartitem in cart_items %}
+  
+                  <li class="cart-item" data-variant-id="11281174462500" data-index="1">
+                    <div class="cart-item__left">
+                      <a href="{% url 'get_product' cartitem.product.slug %}" class="cart-item__link">
+                      {% if '/static/' in cartitem.product.image.url %}
+                        <img class="cart-item__image" src="{{cartitem.product.image}}">
+                        {% else %}
+  
+                        <img class="cart-item__image" src="{{cartitem.product.image.url}}">
+                        {% endif %}
+                      </a>
+                    </div>
+                    <div class="cart-item__right">
+                      <a class="cart-item__title">{{cartitem.product}}</a>
+                      <span style="margin:1px" class="cart-item__subtotal" data-money-convertible="" data-currency-gbp="£18.75" data-currency-cad="$32.16" data-currency="CAD">£{{cartitem.product.price}} each</span>
+  
+                          <span><b>Quantity:{{cartitem.quantity}}</b></span>
+                          <br />
+                          
+                      <span  style="display:inline-block;margin-bottom:0px " class="cart-item__subtotal">SubTotal: £{{cartitem.subtotal}}</span>
+                      <br />
+                      
+  
+                  {% endfor %}
+                </ul>
+              </div>
+                        {% comment %} <div class="cart--mobile">
+
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Product</th>
+                                        <th></th>
+                                        
+                                        <th>Quantity</th>
+                                        <th>Item total</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+
+                                    {% for cart_item in cart_items %}
+                                    
+                                    <tr data-variant-id="11281174462500" data-index="1">
+                                        <td class="cart-item__product">
+                                            <a href="{% url 'get_product' cart_item.product.slug %}"
+                                                class="cart-item__link">
+                                                {% if '/static/' in cart_item.product.image.url %}
+                                                <img class="cart-item__image"
+
+                                                    src="{{cart_item.product.image}}">
+                                                    {% else %}
+                                                    <img class="cart-item__image"
+
+                                                    src="{{cart_item.product.image.url}}">
+                                                    {% endif %}
+                                            </a>
+                                        </td>
+
+                                        <td class="cart-item__info table__left">
+
+
+                                            <p><a class="cart-item__title"
+                                                    href="{% url 'get_product' cart_item.product.slug %}">
+                                                {{cart_item.product|truncatechars:55}}    
+                                                </a></p>
+                                          
+                                            <div id="cart_personalisation_1"
+                                                style="height: 0; overflow: hidden; transition: height 0.5s ease;">
+
+
+
+
+                                                <p>
+                                                    <span class="p_first">Cover Message:</span>
+
+                                                    <br>
+                                                    <span class="p_last">HAPPY BIRTHDAY</span>
+
+                                                </p>
+                                            </div>
+
+                                        </td>
+
+                                       
+
+                                        <td class="cart-item__quantity">
+                                            <span>{{cart_item.quantity}}</span>
+
+
+                                        </td>
+
+                                        <td class="cart-item__subtotal" data-money-convertible="">£{{cart_item.product.price}} each</td>
+
+                                       
+                                    </tr>
+
+                                    {% endfor %}
+
+                                </tbody>
+                            </table>
+                        </div> {% endcomment %}
+                       
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+</body>
+{% include 'includes/footer.html' %}
+{% endblock %}

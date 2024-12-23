@@ -1,0 +1,67 @@
+{% extends 'owner/base.html' %}
+{% load static %}
+{% block content %}
+	<!-- main content -->
+<script src="{% static 'js/jquery-3.5.1.min.js' %}"></script>
+	<main class="main">
+		<div class="container-fluid">
+			<div class="row">
+				<!-- main title -->
+				<div class="col-12">
+					<div class="main__title">
+						<h2>Add Collections| Category</h2>
+					</div>
+				</div>
+				<!-- end main title -->
+
+				<!-- form -->
+				<div class="col-12">
+					<form action="{% url 'add_collection' %}" method='POST' enctype="multipart/form-data" class="form">
+
+						 {% csrf_token %}
+						<div class="row">
+							{% include '../includes/alert.html' %}
+                            <div class="col-12 col-md-5 form__cover">
+								<div class="row">
+									<div class="col-12 col-sm-6 col-md-12">
+										<div class="form__img">
+											<label for="form__img-upload">Upload product photo (190 x 270)</label>
+											<input type="file" id="form__img-upload" required name="image" type="file" accept=".png, .jpg, .jpeg"> <img id="form__img" src="#" alt=" ">
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-12 col-md-7 form__content">
+								<div class="row">
+									<div class="col-12 col-sm-6">
+										<div class="form__group">
+											<input type="text" required class="form__input" name='category_name' placeholder="Category">
+										</div>
+									</div>
+
+
+
+									<div class="col-12">
+										<div class="form__group">
+											<textarea id="text" required name="descriptions" class="form__textarea"  placeholder="Descriptions "></textarea>
+										</div>
+									</div>
+
+							</div>
+
+							<div class="col-12">
+								<div class="row">
+									<div class="col-12">
+										<button type="submit" class="form__btn">Add collection</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+				<!-- end form -->
+			</div>
+		</div>
+	</main>
+	<!-- end main content -->
+{% endblock %}

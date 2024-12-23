@@ -1,0 +1,59 @@
+
+
+ {% for product in products %}
+      <div class="collection__item product-item grid__cell 1/2 1/2--handheld 1/4--lap-and-up">
+      <div class="product-item__inner">
+        <div class="product-item__labels">
+        </div>
+        <a href="{% url 'get_product' product_name=product.slug %}" class="product-item__image">
+          <div class="product-item__image-wrapper">
+            <div class="aspect-ratio" style="padding-bottom: 100.0%">
+            {% if '/static/' in product.image.url %}
+               <img src={{product.image}} data-sizes="auto" data-src="{{product.image}}" data-widths="[200,300,400,600,800,900,1000,1200]" alt="{{product.product_name}}">
+            {% else %}
+            <img src={{product.image.url}} data-sizes="auto" data-src="{{product.image.url}}" data-widths="[200,300,400,600,800,900,1000,1200]" alt="{{product.product_name}}">
+            {% endif %}
+
+            </div>
+          </div>
+        </a>
+        <div class="product-item__info">
+          <h2 class="product-item__title">
+            <a href="{% url 'get_product' product_name=product.slug %}">{{product.product_name}}</a>
+          </h2>
+          <p class="product-item__price" >£{{product.price}}</p>
+            <div class="rating-star">
+      {% if product.avg_rating %}
+          <span>
+                  <i style="{% if product.avg_rating < 1 %} color:black!important{% endif %}" class="fa fa-star"
+                                 aria-hidden="true"></i>
+                                  <i style="{% if product.avg_rating < 2 %} color:black!important{% endif %}" class="fa fa-star"
+                                 aria-hidden="true"></i>
+                                  <i style="{% if product.avg_rating < 3 %} color:black!important{% endif %}" class="fa fa-star"
+                                 aria-hidden="true"></i>
+                                  <i style="{% if product.avg_rating < 4 %} color:black!important{% endif %}" class="fa fa-star"
+                                 aria-hidden="true"></i>
+                                  <i style="{% if product.avg_rating < 5 %} color:black!important{% endif %}" class="fa fa-star"
+                                 aria-hidden="true"></i>
+
+                              </span>
+      {% else %}
+          <span>
+                  <i style="color:black!important" class="fa fa-star"
+                                 aria-hidden="true"></i>
+                                  <i style="color:black!important" class="fa fa-star"
+                                 aria-hidden="true"></i>
+                                  <i style="color:black!important" class="fa fa-star"
+                                 aria-hidden="true"></i>
+                                  <i style="color:black!important" class="fa fa-star"
+                                 aria-hidden="true"></i>
+                                  <i style="color:black!important" class="fa fa-star"
+                                 aria-hidden="true"></i>
+                              </span>
+      {% endif %}
+                                ({{product.reviews_count}} Reviews)
+                           </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}

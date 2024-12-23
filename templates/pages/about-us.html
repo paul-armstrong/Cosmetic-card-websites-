@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block meta %}
+    <meta name="title" content="About Us - Maple Court Yard">
+    <meta name="description" content="Learn about Maple Court Yard, our mission, and the team behind our handmade greeting cards.">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="About Us - Maple Court Yard">
+    <meta property="og:description" content="Learn about Maple Court Yard, our mission, and the team behind our handmade greeting cards.">
+    <meta property="og:image" content="https://maplecourtyarddesigns.co.uk/static/img/image.png">
+    <meta property="og:url" content="https://www.maplecourtyard.com/about_us/">
+{% endblock %}
+
+{% block content %}
+          <body class="kagami--v5 template-product ">
+      {% include 'includes/header.html' %}
+
+  <main id="main" class="main" role="main">
+        <header class="page__header">
+  <nav class="breadcrumb" role="navigation" aria-label="Breadcrumb">
+  <div class="inner">
+    <ul class="breadcrumb__list" itemscope itemtype="http://schema.org/BreadcrumbList">
+      <li class="breadcrumb__item" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <span class="breadcrumb__title" itemprop="name"><a href="{% url 'index' %}">Home</a></span>
+        <meta itemprop="position" content="1">
+      </li>
+
+      
+        <li data-breadcrumb-separator="/" class="breadcrumb__item breadcrumb__item--active" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+          
+            <span class="breadcrumb__title" itemprop="name">About Maple Court Yard</span>
+          
+
+          <meta itemprop="position" content="2">
+        </li>
+      
+    </ul>
+  </div>
+</nav>
+
+  <div class="page__header-wrapper">
+    <div class="container">
+      <h1 class="page__title">About Maple Court Yard</h1>
+    </div>
+  </div>
+</header>
+
+<section class="page__content">
+  <div class="container container--shrink">
+    <div class="rte about">
+      <p>Welcome to Maple Court Yard. We are independent designers and producers of quality handmade greeting cards. We offer a wide variety of elegant and unique designs for everyday and all occasions (from birthday and christening cards, to wedding, to anniversary).  On our website you will also find a great selection of seasonal handmade cards including Christmas, Valentine's Day, Mother's Day, Father's Day and Easter. So with these varieties of styles and designs, whatever the occasion, we are confident there is something for everyone.</p>
+<p>Maple Court Yard was founded in September 2006 with a goal of providing quality and stylish handmade cards that are beyond the ordinary. We wanted to offer unique greeting cards that you wouldn't find on the high street and made a much more personal cards. We have built our company from scratch and have seen a great success in many years, all of which has been founded on beautiful cards delivered in time.</p>
+<p>Perfect for any occasion, we truly make our cards by hand from scratch so each one is unique and has its own personal touch. And you can be sure that all our cards are produced to the highest standard using high quality materials. All our greeting cards are handmade and designed Britain.</p>
+<p>----</p>
+<p>To all of you, from all of us at Maple Court Yard - Thank you and Happy Shopping!</p>
+
+<p> </p>
+    </div>
+  </div>
+</section>
+     </main>
+     {% include 'includes/footer.html' %}
+    
+  </body>
+
+{% endblock %}

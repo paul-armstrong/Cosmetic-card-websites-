@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block meta %}
+    <meta name="title" content="Delivery & Returns - Maple Court Yard">
+    <meta name="description" content="Learn about our delivery and returns policies for handmade greeting cards at Maple Court Yard.">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Delivery & Returns - Maple Court Yard">
+    <meta property="og:description" content="Learn about our delivery and returns policies for handmade greeting cards at Maple Court Yard.">
+    <meta property="og:image" content="https://maplecourtyarddesigns.co.uk/static/img/image.png">
+    <meta property="og:url" content="https://www.maplecourtyard.com/delivery_and_returns/">
+{% endblock %}
+{% block content %}
+          <body class="kagami--v5 template-product ">
+      {% include 'includes/header.html' %}
+
+
+<main id="main" class="main" role="main">
+        <header class="page__header">
+  <nav class="breadcrumb" role="navigation" aria-label="Breadcrumb">
+  <div class="inner">
+    <ul class="breadcrumb__list" itemscope itemtype="http://schema.org/BreadcrumbList">
+      <li class="breadcrumb__item" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <span class="breadcrumb__title" itemprop="name"><a href="{% url 'index' %}">Home</a></span>
+        <meta itemprop="position" content="1">
+      </li>
+
+      
+        <li data-breadcrumb-separator="/" class="breadcrumb__item breadcrumb__item--active" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+          
+            <span class="breadcrumb__title" itemprop="name">Delivery & Returns</span>
+          
+
+          <meta itemprop="position" content="2">
+        </li>
+      
+    </ul>
+  </div>
+</nav>
+
+  <div class="page__header-wrapper">
+    <div class="container">
+      <h1 class="page__title">Delivery & Returns</h1>
+    </div>
+  </div>
+</header>
+
+<section class="page__content">
+  <div class="container container--shrink">
+    <div class="page__description">
+      <h2>UK DELIVERY</h2>
+<p>• <strong>Standard Shipping (Royal Mail 48 Tracked) </strong>- 3-7 business days* <span data-mce-fragment="1">for production and delivery</span>. Royal Mail 48 Tracked is free for all UK orders.</p>
+<p class="rm24_available">• <strong>Royal Mail 24 Tracked </strong>- 2-3 business days* for production and delivery. Royal Mail 24 Tracked is £3.50 for all UK orders.</p>
+<p>*Business day - any day except any Saturday, any Sunday, any Bank Holiday </p>
+<p class="special_delivery_available">• <strong>Special Delivery by Royal Mail</strong> - - Orders placed on Monday to Friday before 12 noon are usually dispatched the same day. Orders placed on Monday to Thursday after 12 noon are usually dispatched the following day. Orders placed on Friday after 12 noon, Saturday and Sunday are dispatched on Monday (unless it’s Bank Holiday).<br><br> Your order will usually arrive next business day from the dispatch day. Delivery charge for UK Special Delivery is based on weight and are calculated at checkout.</p>
+<p>• <strong>Courier Delivery </strong> - Larger or heavier orders are sent by courier. Ships within 5-10 working days + delivery within 1-2 working days. Courier delivery is free for all UK orders.</p>
+<p class="special_delivery_available">Special Delivery and <span>Courier Delivery </span>require signature on arrival. If nobody is at home at the moment of the delivery the Royal Mail or UPS will leave you 'something for you card' with instructions how to arrange re-delivery or collect item from local sorting office.</p>
+<p> </p>
+<h2 class="international_delivery_available">EUROPE DELIVERY</h2>
+<p class="international_delivery_available"><span>Ships within 1-2 working days. </span>All orders are dispatched by Air Mail Priority Service or by UPS courier. Your order normally will arrive within 7 working days from the dispatch day for Western Europe, and within 10 working days for Eastern Europe. All deliveries require signature on arrival.</p>
+<p class="international_delivery_available">Delivery charges for international orders are based on weight and are calculated at checkout.</p>
+<p class="international_delivery_available"> </p>
+<h2 class="international_delivery_available">OVERSEAS DELIVERY OUTSIDE EUROPE</h2>
+<p class="international_delivery_available"><span>Ships within 1-2 working days. </span>All orders are dispatched by Air Mail Priority Service or by UPS courier. Your order normally will arrive within 14 working days from the dispatch day for rest of the world. All deliveries require signature on arrival.</p>
+<p class="international_delivery_available">Delivery charges for international orders are based on weight and are calculated at checkout.</p>
+<p class="international_delivery_available"> </p>
+<h2 class="international_delivery_available1">INTERNATIONAL DELIVERY</h2>
+<p class="international_delivery_available1"><span>Overseas delivery is not available at the moment. We have temporary suspended all international deliveries due to significant delays caused by coronavirus pandemic.</span></p>
+<p class="international_delivery_available1"> </p>
+<h2 class="international_delivery_available">CUSTOMS &amp; IMPORT CHARGES</h2>
+<p class="international_delivery_available">Customs and import duties are charged once the parcel reaches its destination country. Unfortunately, we have no control of these charges and any extra cost needs to be covered by the customer.</p>
+<p class="international_delivery_available"> </p>
+<h2>RETURNS AND EXCHANGES</h2>
+<p>At Maple Court Yard we aim to exceed your expectations. We carefully produce our cards of the highest quality and describe our products in as much detail as possible to avoid any disappointment when they arrive. If, however, you receive goods from us that do not meet your expectations for whatever reason, you can return them to within 30 days for a refund or exchange.</p>
+<p>To request a return, please email us at <a style="color: #dc7f41;" href="#">info@maplecourtyarddesigns.co.uk</a>. Please state your order number and/or name and address and the reason for the return and we will advise you how to return your goods.</p>
+<p>We will normally process your refund to your credit/debit card or PayPal account within 7 working days of its receipt or will provide a replacement where agreed.</p>
+    </div>
+  </div>
+</section>
+     </main>
+     {% include 'includes/footer.html' %}
+     </body>
+     {% endblock %}

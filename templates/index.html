@@ -1,0 +1,166 @@
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Maple Court Yard
+{% endblock %}
+
+{% block meta %}
+      <meta name="title" content="Handmade Greeting Cards | Maple Court Yard">
+      <meta name="index" content="greeting cards, handmade cards, personalized cards, custom greeting cards, Maple Court Yard">
+      <meta name="description" content="Discover unique, handmade greeting cards for every occasion at Maple Court Yard. Personalize your card today for a truly special touch.">
+      <meta property="og:type" content="website">
+      <meta property="og:title" content="Handmade Greeting Cards - Bespoke and Personalized | Maple Court Yard">
+      <meta property="og:description" content="Explore Maple Court Yard for the most personalized handmade cards for every occasion. Make your moments special with our bespoke greeting cards.">
+      <meta property="og:image" content="https://maplecourtyarddesigns.co.uk/static/img/image.png"> <!-- Add an image URL for better engagement on social media -->
+      <meta property="og:url" content="https://www.maplecourtyarddesigns.co.uk"> <!-- Ensure this matches your site's URL -->
+{% endblock %}
+
+{% block content %}
+   <body class="kagami--v5 template-index ">
+      {% include 'includes/header.html' %}
+         <main id="main" class="main" role="main">
+        <div style="text-align:center;width:100%" >
+         <img style="width:100%" src="{% static 'assets/cover.jpg' %}" />
+         </div>
+            <div id="shopify-section-featured-collections" class="shopify-section shopify-section__featured-collections">
+               <section class="index-module section section--padded ">
+                  <div class="inner">
+                     <h2 class="section__title">Shop for cards</h2>
+                     <div class="list-collections list-collections--grid grid grid--middle grid--gallery">
+                     {% comment %}
+                        {% for item in product %}
+
+                        <div class="list-collections__item collection grid__cell 1/2 1/2--handheld 1/4--lap-and-up">
+                           <a href="{% url 'get_product' item.slug %}" class="collection__link"
+                              >
+                              {% if '/static/' in item.image.url %}
+                              <img src="{{item.image}}" />
+                              {% else %}
+                              <img src="{{item.image.url}}" />
+                              {% endif %}
+
+                           </a>
+                           <a href="{% url 'get_product' item.slug %}" class="collection__link">
+                              <h3 class="collection__title">{{item.product_name|truncatechars:50}}</h3>
+                              <p class="col_short_desc">{{item.description|truncatechars:300}}
+                              </p>
+                           </a>
+                        </div>
+                        {% endfor %}
+                        {% endcomment %}
+                        {% for collection in collections %}
+                        <div class="list-collections__item collection grid__cell 1/2 1/2--handheld 1/4--lap-and-up">
+                           <a href="{% url 'collection' collection_slug=collection.collection_slug %}" class="collection__link">
+                           {% if '/static/' in collection.image.url %}
+                              <img src="{{collection.image}} "/>
+                              {% else %}
+                              <img src="{{collection.image.url}} "/>
+                              {% endif %}
+                           </a>
+                           <a href="{% url 'collection' collection_slug=collection.collection_slug %}" class="collection__link">
+                              <h3 class="collection__title">{{collection.collection}} Collection</h3>
+                              <p class="col_short_desc">{{collection.description}}
+                              </p>
+                           </a>
+                        </div>
+                        {% endfor %}
+                        {% comment %}
+                        <div class="list-collections__item collection grid__cell 1/2 1/2--handheld 1/4--lap-and-up">
+                           <a  href="{% url 'collection' collection_slug='wedding' %}" class="collection__link"
+                              >
+                              <img src="{% static 'assets/get_wellsoon_second_lg.webp' %}" />
+                           </a>
+                           <a href="{% url 'collection' collection_slug='wedding' %}" class="collection__link">
+                              <h3 class="collection__title">Wedding </h3>
+                              <p class="col_short_desc">Fully three-dimensional with impeccably arranged silk flowers, hearts and
+                                 ribbons, these luxurious wedding cards for sure will amaze bride and groom on their Wedding Day.
+                              </p>
+                           </a>
+                        </div>
+                        <div class="list-collections__item collection grid__cell 1/2 1/2--handheld 1/4--lap-and-up">
+                           <a  href="{% url 'collection' collection_slug='anniversary' %}" class="collection__link"
+                              >
+                              <img src="{% static 'assets/get_wellsoon_second_lg.webp' %}" />
+                           </a>
+                           <a href="{% url 'collection' collection_slug='wedding' %}" class="collection__link">
+                              <h3 class="collection__title">Anniversary </h3>
+                              <p class="col_short_desc">Handcrafted with sparkling crystals, fine ribbons, premium silk flowers, and
+                                 expertly printed artwork, these luxurious anniversary cards are a testament to continued devotion.
+                              </p>
+                           </a>
+                        </div>
+                        {% endcomment %}
+                       
+                     </div>
+                     <p class="p_read-more">
+                        <a class="article__read-more" href="{% url 'collections' %}">
+                           View more
+                           <svg class="icon icon-arrow-right">
+                              <use xlink:href="#icon-arrow-right">
+                              </use>
+                           </svg>
+                        </a>
+                     </p>
+                  </div>
+               </section>
+            </div>
+            <div id="shopify-section-1532954638829" class="shopify-section shopify-section__featured-points">
+               <section class="index-module section section--padded  index-module__featured-text">
+                  <div class="inner inner-featured-notice">
+                     <div class="section-wrapper rte" style="text-align: center">
+                        <p></p>
+                     </div>
+                     <div class="grid grid--middle grid--gallery notice_boxes">
+                        <div class="grid__cell notice_box 1/3--handheld-and-up">
+                           <h3>Free and fast UK delivery</h3>
+                           <p>Our standard delivery is Free for all UK orders.</p>
+                        </div>
+                        <div class="grid__cell notice_box 1/3--handheld-and-up">
+                           <h3>Free personalisation</h3>
+                           <p>Add your own special message both on front and inside, and make your card truly special and personal.
+                           </p>
+                        </div>
+                        <div class="grid__cell notice_box 1/3--handheld-and-up">
+                           <h3>Handmade in the UK</h3>
+                           <p> All our cards are designed and handcrafted by us here in our studio in Liverpool .</p>
+                        </div>
+                     </div>
+                  </div>
+               </section>
+            </div>
+            
+            <div id="shopify-section-featured-content" class="shopify-section shopify-section__featured-text">
+               <section class="index-module section section--padded  index-module__featured-text">
+                  <div class="container">
+                     <h1 class="section__title">
+                     Personalised handmade cards for all reasons and all seasons</h2>
+                     <div class="section-wrapper rte featured_text" style="text-align: left">
+                        <p>Looking for a special greeting card? Here, at Maple Court Yard Designs , we are offering fantastic range of
+                           unique personalised handmade cards for every possible occasion. In this day and age of commercialised
+                           everything, sometimes you need a little extra dash of creativity to really connect with your family
+                           and friends. By sticking to making each card by hand and providing an great variety of gorgeous
+                           decorative styles and options, we truly add a little bit of our soul into each card.
+                        </p>
+                        <p></p>
+                        <p>From <a href="{% url 'collection' collection_slug='birthday' %}" title="Handmade Birthday Cards">birthdays</a>
+                           and <a href="{% url 'collection' collection_slug='wedding' %}" title="Handmade Wedding Cards">weddings</a>  to
+                           <a href="{% url 'collection' collection_slug='christmas' %}" title="Handmade Christmas Cards">Christmas</a>
+                           or to a simple <a
+                              href="{% url 'collection' collection_slug='thank-you'}" title="Handmade Thank You Cards">thank you
+                           card</a>, no matter what you want to say to someone, we make sure you say it with style. And all our
+                           handmade cards are fully customisable with your own special message both on front and inside, making
+                           them truly personals and special designs.
+                        </p>
+                        <p></p>
+                        <p>All our handmade cards are beautifully and carefully handmade in the UK.</p>
+                     </div>
+                  </div>
+               </section>
+            </div>
+
+         </main>
+         {% include 'includes/footer.html' %}
+   </body>
+  {% endblock %}

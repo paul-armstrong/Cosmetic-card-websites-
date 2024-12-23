@@ -1,0 +1,516 @@
+{% extends 'base.html' %}
+{% block content %}
+{% include 'includes/header.html' %}
+
+{% block style %}
+<style>
+@media only screen and (max-width: 1300px) {
+   .mobile-view{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+   }
+   .product{
+    display:flex;
+    width: 100%;
+    padding:0;
+
+    
+   }
+   .container{
+    padding:0px!important;
+   }
+   .responsive{
+    display:flex!important;
+   }
+   #paypal-button-container{
+    width:100%;
+   }
+   .right{
+    width:100%!important;
+   }
+  
+}
+
+@media only screen and (max-width:973px){
+    
+    .cart--desktop .cart-item__quantity {
+        min-width: 0px;
+    }
+    .cart--desktop th {
+        padding: 20px 2px;
+        
+    }
+}
+
+@media only screen and (max-width:840px){
+   
+    .mobile-view{
+        margin:0 auto;
+    }
+    .responsive{
+        justify-content:center;
+    }
+    .left{
+        margin-left:12px;
+    }
+
+
+}
+
+@media only screen and (max-width:613px){
+
+
+    .product__showcase{
+        display:flex;
+        flex-direction:column;
+        width:100%!important;
+        margin-top:2rem;
+        justify-content:center;
+    }
+    .responsive{
+        justify-content:space-between;
+    }
+}
+
+@media only screen and (max-width:500px){
+    .product__showcase{
+        width:100%!important;
+        padding:0;
+    }
+    .responsive{
+        display:flex!important;
+        flex-direction:column;
+        width:100%;
+        justify-content:center;
+    }
+    .cart--mobile table{
+        width:100%;
+    }
+    .center{
+        vertical-align:initial;
+    }
+
+}
+</style>
+
+{% endblock %}
+
+<div id="shopify-section-custom-product-template-XL" class="shopify-section">
+    <header class="page__header ">
+
+        <div class="page__header-wrapper page__header-wrapper_cart">
+          <div class="container">
+            
+              <h1 class="page__title">
+                Review your order..
+              </h1>           
+            
+          </div>
+        </div>
+      </header>
+   
+    
+    <div class="product responsive" id="custom-product-template-XL-product-6782274044064" data-product="6782274044064">
+        <div id="product_details" class="product__details" style='margin:0 auto;'>
+
+
+            <div class="inner inner-product">
+                <div class="grid mobile-view">
+
+                    {% comment %} for left container  {% endcomment %}
+                    <div class="product__showcase grid__cell 3/5--lap-and-up product" style="width:50%">
+                        <div class="container container--shrink">
+                            <form method="post" action=""
+                                id="customer_login" accept-charset="UTF-8" data-login-with-shop-sign-in="true"
+                                class="form--shrinked"><input type="hidden" name="form_type"
+                                    value="customer_login"><input type="hidden" name="utf8" value="✓">
+
+
+                                <div class="form__control ">
+                                    <h2>Billing address</h2>
+                                    <p><span id="toDate_48">Full name:</span>{{order.full_name}}</p>
+                                    <p><span id="toDate_48">country:</span>{{order.country}}</p>
+                                    <p><span id="toDate_48">email:</span>{{order.email}}.</p>
+                                    <p><span id="toDate_48">address:</span>{{order.address_line_1}}</p>
+                                    <p><span id="toDate_48">phone number:</span>{{order.phone}}</p>
+                                    <p><span id="toDate_48">city:</span> {{order.city}}</p>
+                                </div>
+
+
+
+
+                        </div>
+
+                        </form>
+                        <div class="product__info grid__cell 2/5--lap-and-up ">
+                            <div class="cart--desktop left">
+
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Product</th>
+                                            <th></th>
+
+                                            <th>Quantity</th>
+                                            <th>Item total</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+
+                                        {% for cart_item in cart_items %}
+
+                                        <tr data-variant-id="11281174462500" data-index="1">
+                                            <td class="cart-item__product">
+                                                <a href="{% url 'get_product' cart_item.product.slug %}"
+                                                    class="cart-item__link">
+                                                    {% if '/static/' in cart_item.product.image.url %}
+                                                    <img class="cart-item__image"
+    
+                                                        src="{{cart_item.product.image}}">
+                                                        {% else %}
+                                                        <img class="cart-item__image"
+    
+                                                        src="{{cart_item.product.image.url}}">
+                                                        {% endif %}
+                                                </a>
+                                            </td>
+    
+                                            <td class="cart-item__info table__left">
+    
+    
+                                                <p><a class="cart-item__title"
+                                                        href="{% url 'get_product' cart_item.product.slug %}">
+                                                    {{cart_item.product|truncatechars:30}}    
+                                                    </a></p>
+                                              
+                                                <div id="cart_personalisation_1"
+                                                    style="height: 0; overflow: hidden; transition: height 0.5s ease;">
+    
+    
+    
+    
+                                                    <p>
+                                                        <span class="p_first">Cover Message:</span>
+    
+                                                        <br>
+                                                        <span class="p_last">HAPPY BIRTHDAY</span>
+    
+                                                    </p>
+                                                </div>
+    
+                                            </td>
+    
+                                           
+    
+                                            <td class="cart-item__quantity">
+                                                <span>{{cart_item.quantity}}</span>
+    
+    
+                                            </td>
+    
+                                            <td class="cart-item__subtotal" data-money-convertible="">£{{cart_item.product.price}} each</td>
+    
+                                           
+                                        </tr>
+                                        {% endfor %}
+
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="cart--mobile">
+                                <ul class="cart__items">
+                                    {% for cartitem in cart_items %}
+                  
+                                  <li class="cart-item" data-variant-id="11281174462500" data-index="1">
+                                    <div class="cart-item__left">
+                                      <a href=="{% url 'get_product' cartitem.product.slug %}" class="cart-item__link">
+                                      {% if '/static/' in cartitem.product.image.url %}
+                                        <img class="cart-item__image" src="{{cartitem.product.image}}">
+                                        {% else %}
+                  
+                                        <img class="cart-item__image" src="{{cartitem.product.image.url}}">
+                                        {% endif %}
+                                      </a>
+                                    </div>
+                                    <div class="cart-item__right">
+                                      <a class="cart-item__title">{{cartitem.product}}</a>
+                                      <span style="margin:1px" class="cart-item__subtotal" data-money-convertible="" data-currency-gbp="£18.75" data-currency-cad="$32.16" data-currency="CAD">£{{cartitem.product.price}} each</span>
+                  
+                                          <span><b>Quantity:{{cartitem.quantity}}</b></span>
+                                          <br />
+                                          
+                                      <span  style="display:inline-block;margin-bottom:0px " class="cart-item__subtotal">SubTotal: £{{cartitem.subtotal}}</span>
+                                      <br />
+                                       
+                  
+                                  {% endfor %}
+                                </ul>
+                              </div>
+{% comment %} 
+                            <div class="cart--mobile">
+
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Product</th>
+                                            <th></th>
+
+                                            <th>Quantity</th>
+                                            <th>Item total</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+
+                                        {% for cart_item in cart_items %}
+
+                                        <tr data-variant-id="11281174462500" data-index="1">
+                                            <td class="cart-item__product">
+                                                <a href="{% url 'get_product' cart_item.product.slug %}"
+                                                    class="cart-item__link">
+                                                    {% if '/static/' in cart_item.product.image.url %}
+                                                    <img class="cart-item__image"
+    
+                                                        src="{{cart_item.product.image}}">
+                                                        {% else %}
+                                                        <img class="cart-item__image"
+    
+                                                        src="{{cart_item.product.image.url}}">
+                                                        {% endif %}
+                                                </a>
+                                            </td>
+    
+                                            <td class="cart-item__info table__left">
+    
+    
+                                                <p><a class="cart-item__title"
+                                                        href="{% url 'get_product' cart_item.product.slug %}">
+                                                    {{cart_item.product|truncatechars:30}}    
+                                                    </a></p>
+                                              
+                                                <div id="cart_personalisation_1"
+                                                    style="height: 0; overflow: hidden; transition: height 0.5s ease;">
+    
+    
+    
+    
+                                                    <p>
+                                                        <span class="p_first">Cover Message:</span>
+    
+                                                        <br>
+                                                        <span class="p_last">HAPPY BIRTHDAY</span>
+    
+                                                    </p>
+                                                </div>
+    
+                                            </td>
+    
+                                           
+    
+                                            <td class="cart-item__quantity">
+                                                <span>{{cart_item.quantity}}</span>
+    
+    
+                                            </td>
+    
+                                            <td class="cart-item__subtotal" data-money-convertible="">£{{cart_item.product.price}} each</td>
+    
+                                           
+                                        </tr>
+                                        {% endfor %}
+
+                                    </tbody>
+                                </table>
+                            </div> {% endcomment %}
+
+                            
+
+                        </div>
+                    </div>
+
+
+{% comment %} for right container  {% endcomment %}
+
+                    <div class="product__showcase grid__cell 3/5--lap-and-up right" style="width:50%;">
+                        <div class="container container--shrink responsive" style='margin-top:2rem;'>
+                            <div class="cart--desktop" style='margin-right:2rem'>
+
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Total</th>
+                                            <th>Tax</th>
+                                            <th>Grand Total</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+
+                                        <tr data-variant-id="11281174462500" data-index="1">
+                                            <td class="cart-item__product">
+                                                {{total}}
+                                            </td>
+
+                                            <td class="cart-item__quantity">
+                                                <span>0 EUR</span>
+
+
+                                            </td>
+
+                                            <td class="cart-item__subtotal" data-money-convertible="">£{{grand_total}}</td>
+
+
+                                        </tr>
+
+                                    </tbody>
+
+                                </table>
+                               
+
+                            </div>
+                            
+                            <div class="cart--mobile">
+
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Total</th>
+                                            <th>Tax</th>
+                                            <th>Grand Total</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+
+                                        <tr data-variant-id="11281174462500" data-index="1" style='text-align:center;'>
+                                            <td class="cart-item__product center">
+                                                {{total}}
+                                            </td>
+
+                                            <td class="cart-item__quantity">
+                                                <span>0 EUR</span>
+
+
+                                            </td>
+
+                                            <td class="cart-item__subtotal" data-money-convertible="">£{{grand_total}}</td>
+
+
+                                        </tr>
+
+                                    </tbody>
+
+                                </table>
+                               
+
+                            </div>
+
+                            <div id="paypal-button-container" style="text-align;">
+                                <!-- PayPal Button Will Load -->
+
+                            </div>
+                      
+
+                        </div>
+
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{% include 'includes/footer.html' %}
+
+
+<script>
+    
+
+        function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+    
+        var amount = "{{ grand_total }}"
+        var url = "{% url 'payements' %}"
+        var csrftoken = getCookie('csrftoken');
+        var orderID = "{{order.order_number}}"
+        var payment_method = 'PayPal'
+        var redirect_url = "{% url 'order_complete' %}"
+        // Render the PayPal button into #paypal-button-container
+        paypal.Buttons({
+    
+            style: {
+                color: 'blue',
+                shape: 'rect',
+                label: 'pay',
+                height: 40
+                
+            },
+    
+            // Set up the transaction
+            createOrder: function(data, actions) {
+                return actions.order.create({
+                    purchase_units: [{
+                        amount: {
+                            value: amount,
+                        }
+                    }]
+                });
+            },
+    
+            // Finalize the transaction
+            onApprove: function(data, actions) {
+                return actions.order.capture().then(function(details) {
+                    // Show a success message to the buyer
+                    console.log(details);
+                    sendData();
+                    function sendData(){
+                        fetch(url, {
+                            method : "POST",
+                            headers: {
+                                "Content-type": "application/json",
+                                "X-CSRFToken": csrftoken,
+                            },
+                            body: JSON.stringify({
+                                orderID: orderID,
+                                transID: details.id,
+                                payment_method: payment_method,
+                                status: details.status,
+                            }),
+                        })
+                      .then((response) => response.json())
+                      .then((data) => {
+                            window.location.href = redirect_url + '?order_number='+data.order_number+'&payment_id='+data.transID;
+                        });
+                    }
+                });
+            }
+    
+    
+        }).render('#paypal-button-container');
+    </script>
+    
+   
+{% endblock %}

@@ -1,0 +1,111 @@
+{% extends 'owner/base.html' %}
+{% load static %}
+{% block content %}
+	<!-- main content -->
+<script src="{% static 'js/jquery-3.5.1.min.js' %}"></script>
+	<main class="main">
+		<div class="container-fluid">
+			<div class="row">
+				<!-- main title -->
+				<div class="col-12">
+					<div class="main__title">
+						<h2>Edit Products</h2>
+					</div>
+				</div>
+				<!-- end main title -->
+
+				<!-- form -->
+				<div class="col-12">
+					<form action="{% url 'edit_product' id %}" method='POST' enctype="multipart/form-data" class="form">
+						
+						 {% csrf_token %}
+						<div class="row">
+							{% include '../includes/alert.html' %}
+							<div class="col-12 col-md-5 form__cover">
+                                <div class="row">
+                                    <div class="col-12 col-sm-6 col-md-12">
+                                        <div class="form__img">
+                                            <label for="form__img-upload">Upload product photo (190 x 270)</label>
+                                            <input type="file" id="form__img-upload" name="form__img-upload" accept=".png, .jpg, .jpeg"> 
+                                            {% if product.image %}
+                                             {% if '/static/' in product.image.url %}
+                                                <img id="form__img" src="{{ product.image }}" alt="Product Image">
+                                                {% else %}
+                                                <img id="form__img" src="{{ product.image.url }}" alt="Product Image">
+                                            {% endif %}
+                                            {% else %}
+                                                <img id="form__img" src="#" alt="No Image">
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+							<div class="col-12 col-md-7 form__content">
+								<div class="row">
+									<div class="col-12 col-sm-6">
+										<div class="form__group">
+											<input type="text" required class="form__input" value="{{product.product_name}} "name='product_name' placeholder="Product name">
+										</div>
+									</div>
+									<div class="col-12 col-sm-6 col-lg-3">
+										<div class="form__group">
+											<input type="text" required class="form__input" value={{product.price}} placeholder="price" name='price'>
+										</div>
+									</div>
+
+									<div class="col-12">
+										<div class="form__group">
+											<textarea id="text" required name="descriptions" class="form__textarea" placeholder="Descriptions ">{{product.description}}</textarea>
+										</div>
+									</div>
+									<div class="col-12">
+										<div class="form__group">
+											<textarea id="text" name="details"  class="form__textarea" placeholder="Details">{{product.details}}</textarea>
+										</div>
+									</div>
+
+									
+
+ 
+									
+                                    
+
+                                    <div class="col-12">
+                                        <div class="form__group">
+                                            <select class="js-example-basic-multiple" name="category" id="genre_en" multiple="multiple" placeholder="Choose category">
+                                                {% for collection in collections %}
+                                                {% if collection in product.collections.all %}
+                                                <option selected value="{{ collection.id }}">{{ collection.collection }}</option>
+                                            {% else %}
+                                                <option value="{{ collection.id }}">{{ collection.collection }}</option>
+                                            {% endif %}                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div>
+                                    
+                                    
+                                    
+									
+
+
+									
+								</div>
+							</div>
+
+							<div class="col-12">
+								<div class="row">			
+									<div class="col-12">
+										<button type="submit" class="form__btn">Edit product</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+				<!-- end form -->
+			</div>
+		</div>
+	</main>
+	<!-- end main content -->
+{% endblock %}

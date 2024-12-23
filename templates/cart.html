@@ -1,0 +1,172 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block style %}
+
+<style>
+  @media only screen and (max-width: 550px) {
+    .cart--mobile{
+      display:block;
+    }
+    .cart--desktop{
+      display:none;
+    }
+
+  }
+  </style>
+{% endblock %}
+{% block content %}
+  <body class="kagami--v5 template-cart ">
+    {% include 'includes/header.html' %}
+    <main id="main" class="main" role="main">
+      {% if quantity == 0 %}
+        <div id="shopify-section-cart-template" class="shopify-section">
+          <header class="page__header page__header--no-border">
+            <div class="page__header-wrapper page__header-wrapper_cart">
+              <div class="container">
+                <h1>Empty cart</h1>
+                <div class="page__description page__description--centered">
+                  <p>It feels lonely...</p>
+                  <div class="page__header-actions">
+                    <a href="/products/" class="button button--primary">Let's shop!</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </header>
+        </div>
+      {% else %}
+        <div class='shopify-section'>
+          <header class="page__header ">
+            <div class="page__header-wrapper page__header-wrapper_cart">
+              <div class="container">
+                <h1 class="page__title">Your Shopping Bag</h1>
+              </div>
+            </div>
+          </header>
+
+            <div class="cart--mobile">
+              <ul class="cart__items">
+                  {% for cartitem in cart_items %}
+
+                <li class="cart-item" data-variant-id="11281174462500" data-index="1">
+                  <div class="cart-item__left">
+                    <a href=="{% url 'get_product' cartitem.product.slug %}" class="cart-item__link">
+                    {% if '/static/' in cartitem.product.image.url %}
+                      <img class="cart-item__image" src="{{cartitem.product.image}}">
+                      {% else %}
+
+                      <img class="cart-item__image" src="{{cartitem.product.image.url}}">
+                      {% endif %}
+                    </a>
+                  </div>
+                  <div class="cart-item__right">
+                    <a class="cart-item__title">{{cartitem.product}}</a>
+                    <span style="margin:1px" class="cart-item__subtotal" data-money-convertible="" data-currency-gbp="£18.75" data-currency-cad="$32.16" data-currency="CAD">£{{cartitem.product.price}} each</span>
+
+                        <span><b>Quantity:{{cartitem.quantity}}</b></span>
+                        <br />
+                        <div style="display: inline-block;color: #7c5c5d;font-size: 14px;vertical-align: -13px;border: 1px solid #e4e4e4;border-radius: 20px;" class="quantity__actions">
+
+                        <a style="padding: 0 15px 0 18px;
+                  border-right: 1px solid #e4e4e4;" href="{% url 'remove_item' cartitem.product.id cartitem.id %}">
+                          <svg class="icon icon-minus">
+                            <use xlink:href="#icon-minus"></use>
+                          </svg>
+                        </a>
+                        <a style="padding: 0 15px 0 18px;" href="{% url 'add_cart' cartitem.product.id %}">
+                          <svg class="icon icon-plus">
+                            <use xlink:href="#icon-plus"></use>
+                          </svg>
+                        </a>
+                        </div>
+                        <br />
+                    <span  style="display:inline-block;margin-bottom:0px " class="cart-item__subtotal">SubTotal: £{{cartitem.subtotal}}</span>
+                    <br />
+                     <a href="{% url 'remove_cart_item' cartitem.product.id  cartitem.id %}">
+                       <span style="color:#c38052">Remove Item</span>
+                      </a>
+
+                {% endfor %}
+              </ul>
+            </div>
+            <div class="cart--desktop">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Product</th>
+                    <th></th>
+                    <th class="cart-item__price-header">Price</th>
+                    <th>Quantity</th>
+                    <th>Item total</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for cartitem in cart_items %}
+                  <tr data-variant-id="11281174462500" data-index="1">
+                    <td class="cart-item__product">
+                      <a href="{% url 'get_product' cartitem.product.slug %}" class="cart-item__link">
+                      {% if '/static/' in cartitem.product.image.url %}
+                        <img class="cart-item__image" src="{{cartitem.product.image}}">
+                        {% else %}
+                        <img class="cart-item__image" src="{{cartitem.product.image.url}}">
+                        {% endif %}
+                      </a>
+                    </td>
+                    <td class="cart-item__info table__left">
+                      <p>
+                        <a class="cart-item__title" href="{% url 'get_product' cartitem.product.slug %}">{{cartitem.product}}</a>
+                      </p>
+                   
+                     
+                    </td>
+                    <td class="cart-item__price" data-money-convertible="" data-currency-gbp="£18.75" data-currency-cad="$32.16" data-currency="CAD">£{{cartitem.product.price}} each</td>
+                    <td class="cart-item__quantity">
+                      <span>{{cartitem.quantity}}</span>
+                      <div class="quantity__actions">
+                        <a href="{% url 'remove_item' cartitem.product.id cartitem.id %}">
+                          <svg class="icon icon-minus">
+                            <use xlink:href="#icon-minus"></use>
+                          </svg>
+                        </a>
+                        <a href="{% url 'add_cart' cartitem.product.id %}">
+                          <svg class="icon icon-plus">
+                            <use xlink:href="#icon-plus"></use>
+                          </svg>
+                        </a>
+                      </div>
+                    </td>
+                    <td class="cart-item__subtotal" data-money-convertible="" data-currency-gbp="£18.75" data-currency-cad="$32.16" data-currency="CAD">£{{cartitem.subtotal}}</td>
+                    <td class="cart-item__remove">
+                      <a href="{% url 'remove_cart_item' cartitem.product.id  cartitem.id %}" class="icon-cross-container">
+                        <svg class="icon icon-close">
+                          <use xlink:href="#icon-close"></use>
+                        </svg>
+                      </a>
+                    </td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+            <div class="inner inner-cart">
+              <div class="cart__checkout">
+                <div class="button-wrapper">
+                  <a href='{% url "checkout" %}' name="checkout" class="button button--primary">
+                    GrandTotal:${{grand_total}}
+                    <br /><br />
+
+                    Checkout
+                  </a>
+                  
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      {% endif %}
+    </main>
+    {% include 'includes/footer.html' %}
+  </body>
+{% endblock %}

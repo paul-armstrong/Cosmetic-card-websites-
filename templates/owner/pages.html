@@ -1,0 +1,159 @@
+{% extends 'owner/base.html' %}
+
+{% load static %}
+
+{% block content %}
+	<!-- end sidebar -->
+
+	<!-- main content -->
+	<main class="main">
+		<div class="container-fluid">
+			<div class="row">
+				<!-- main title -->
+				<div class="col-12">
+					<div class="main__title">
+						<h2 style="display:inline-block">Pages</h2>
+
+						<a style="width:40%;" href="{% url 'add_page' %}" class="sign__btn" >Create a New Page</a>
+
+					</div>
+					<div>
+					</div>
+				</div>
+				<!-- end main title -->
+
+				<!-- users -->
+				<div class="col-12">
+					<div class="main__table-wrap">
+						<table class="main__table">
+							<thead>
+								<tr>
+									<th>ID</th>
+									<th>Page Title</th>
+									<th>Status</th>
+									<th>Language</th>
+									<th>CREATED DATE</th>
+									<th>ACTIONS</th>
+								</tr>
+							</thead>
+
+							<tbody>
+								{% for page in all_pages %}
+								<tr>
+									<td>
+										<div class="main__table-text">{{page.id}}</div>
+									</td>
+									
+									<td>
+										<div class="main__table-text">{{page.title}}</div>
+									</td>
+									<td>
+										<div class="main__table-text">{{page.status}}</div>
+									</td>
+									<td>
+										<div class="main__table-text">{{page.lang}}</div>
+									</td>
+									
+									<td>
+										<div class="main__table-text">{{page.created_at|date:"Y-m-d"}}</div>
+									</td>
+									
+									}
+									<td>
+										{% if page.status == "Inactive" %}
+										<div class="main__table-btns">
+											<a href="{% url 'activate_page' page.id %}" onclick='return confirm("do you want to activate the page?");' class="main__table-btn main__table-btn--banned ">
+												<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+													<path d="M12,13a1.49,1.49,0,0,0-1,2.61V17a1,1,0,0,0,2,0V15.61A1.49,1.49,0,0,0,12,13Zm5-4V7A5,5,0,0,0,7,7V9a3,3,0,0,0-3,3v7a3,3,0,0,0,3,3H17a3,3,0,0,0,3-3V12A3,3,0,0,0,17,9ZM9,7a3,3,0,0,1,6,0V9H9Zm9,12a1,1,0,0,1-1,1H7a1,1,0,0,1-1-1V12a1,1,0,0,1,1-1H17a1,1,0,0,1,1,1Z"/>
+												</svg>
+											</a>
+											
+											<a href="{% url 'delete_page' page.id %}" onclick='return confirm("do you want to delete it?");' class="main__table-btn main__table-btn--delete ">
+												<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10,18a1,1,0,0,0,1-1V11a1,1,0,0,0-2,0v6A1,1,0,0,0,10,18ZM20,6H16V5a3,3,0,0,0-3-3H11A3,3,0,0,0,8,5V6H4A1,1,0,0,0,4,8H5V19a3,3,0,0,0,3,3h8a3,3,0,0,0,3-3V8h1a1,1,0,0,0,0-2ZM10,5a1,1,0,0,1,1-1h2a1,1,0,0,1,1,1V6H10Zm7,14a1,1,0,0,1-1,1H8a1,1,0,0,1-1-1V8H17Zm-3-1a1,1,0,0,0,1-1V11a1,1,0,0,0-2,0v6A1,1,0,0,0,14,18Z"/></svg>
+											</a>
+											<a href="{% url 'edit_page' page.id %}" class="main__table-btn main__table-btn--edit">
+												<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M22,7.24a1,1,0,0,0-.29-.71L17.47,2.29A1,1,0,0,0,16.76,2a1,1,0,0,0-.71.29L13.22,5.12h0L2.29,16.05a1,1,0,0,0-.29.71V21a1,1,0,0,0,1,1H7.24A1,1,0,0,0,8,21.71L18.87,10.78h0L21.71,8a1.19,1.19,0,0,0,.22-.33,1,1,0,0,0,0-.24.7.7,0,0,0,0-.14ZM6.83,20H4V17.17l9.93-9.93,2.83,2.83ZM18.17,8.66,15.34,5.83l1.42-1.41,2.82,2.82Z"/></svg>
+											</a>
+										</div>
+										{% else %}
+										<div class="main__table-btns">
+											<a href="{% url 'deactivate_page' page.id %}" onclick='return confirm("do you want to deactivate it?");' class="main__table-btn main__table-btn--banned ">
+												<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+													<path d="M12,13a1.49,1.49,0,0,0-1,2.61V17a1,1,0,0,0,2,0V15.61A1.49,1.49,0,0,0,12,13Zm5-4V7A5,5,0,0,0,7,7V9a3,3,0,0,0-3,3v7a3,3,0,0,0,3,3H17a3,3,0,0,0,3-3V12A3,3,0,0,0,17,9ZM9,7a3,3,0,0,1,6,0V9H9Zm9,12a1,1,0,0,1-1,1H7a1,1,0,0,1-1-1V12a1,1,0,0,1,1-1H17a1,1,0,0,1,1,1Z"/>
+												</svg>
+											</a>
+											
+											<a href="{% url 'delete_page' page.id %}" onclick='return confirm("do you want to delete it?");' class="main__table-btn main__table-btn--delete ">
+												<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10,18a1,1,0,0,0,1-1V11a1,1,0,0,0-2,0v6A1,1,0,0,0,10,18ZM20,6H16V5a3,3,0,0,0-3-3H11A3,3,0,0,0,8,5V6H4A1,1,0,0,0,4,8H5V19a3,3,0,0,0,3,3h8a3,3,0,0,0,3-3V8h1a1,1,0,0,0,0-2ZM10,5a1,1,0,0,1,1-1h2a1,1,0,0,1,1,1V6H10Zm7,14a1,1,0,0,1-1,1H8a1,1,0,0,1-1-1V8H17Zm-3-1a1,1,0,0,0,1-1V11a1,1,0,0,0-2,0v6A1,1,0,0,0,14,18Z"/></svg>
+											</a>
+											<a href="{% url 'edit_page' page.id %}" class="main__table-btn main__table-btn--edit">
+												<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M22,7.24a1,1,0,0,0-.29-.71L17.47,2.29A1,1,0,0,0,16.76,2a1,1,0,0,0-.71.29L13.22,5.12h0L2.29,16.05a1,1,0,0,0-.29.71V21a1,1,0,0,0,1,1H7.24A1,1,0,0,0,8,21.71L18.87,10.78h0L21.71,8a1.19,1.19,0,0,0,.22-.33,1,1,0,0,0,0-.24.7.7,0,0,0,0-.14ZM6.83,20H4V17.17l9.93-9.93,2.83,2.83ZM18.17,8.66,15.34,5.83l1.42-1.41,2.82,2.82Z"/></svg>
+											</a>
+										</div>
+										
+										{% endif %}
+									</td>
+									
+									
+								</tr>
+								{% endfor %}
+							</tbody>
+						</table>
+					</div>
+					
+				</div>
+				</div>
+				<!-- end users -->
+
+				<!-- paginator -->
+				
+				<!-- <div class="col-12">
+					<div class="paginator">
+						<span class="paginator__pages">10 from {{count}}</span>
+
+						<ul class="catalog__paginator">
+							<nav class="mt-4" aria-label="Page navigation sample">
+								{% if all_products.has_other_pages %}
+								<ul class="pagination" style='display: flex;
+								margin-bottom: 13px;'>
+									{% if all_products.has_previous %}
+									<li class="page-item "><a class="page-link"
+											href="?page={{all_products.previous_page_number}}" style='color:white; margin-right:13px;'>Previous</a></li>
+									{% else %}
+									<li class="page-item disabled"><a class="page-link" style='color:white; margin-right:13px;' href="">Previous</a></li>
+									{% endif %}
+			
+									{% for i in all_products.paginator.page_range %}
+									{% if all_products.number == i %}
+									<li class="page-item active" ><a class="page-link" style='color:white; margin-right:13px;'href="#">{{i}}</a></li>
+									{% else %}
+									<li class="page-item "><a class="page-link" style='color:white; margin-right:13px;' href="?page={{i}}">{{i}}</a></li>
+									{% endif %}
+									{% endfor %}
+									{% if all_products.has_next %}
+									<li class="page-item"><a class="page-link active" href="?page={{all_products.next_page_number}}" style='color:white; margin-left:13px;'>Next</a></li>
+									{% else %}
+									<li class="page-item disabled"><a class="page-link" style='color:white;' href="#">Next</a></li>
+									{% endif %}
+								</ul>
+								{% endif %}
+							</nav>
+						</ul>
+					</div>
+				</div> -->
+			
+				<!-- end paginator -->
+			</div>
+		</div>
+		
+	</main>
+	<!-- end main content -->
+	
+<script>
+	function deleteItem(){
+		alert('Do you want to delete?')
+	}
+</script>
+	
+	<!-- end modal delete -->
+{% endblock %}

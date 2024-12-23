@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+  <body class="kagami--v5 template-customers-login ">
+   {% include 'includes/header.html' %}
+   <main id="main" class="main" role="main">
+        <header class="page__header">
+  <nav class="breadcrumb" role="navigation" aria-label="Breadcrumb">
+  <div class="inner">
+    <ul class="breadcrumb__list" itemscope itemtype="http://schema.org/BreadcrumbList">
+      <li class="breadcrumb__item" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <span class="breadcrumb__title" itemprop="name"><a href="../index.html">Home</a></span>
+        <meta itemprop="position" content="1">
+      </li>
+
+      
+        <li data-breadcrumb-separator="/" class="breadcrumb__item breadcrumb__item--active" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+          
+            <span class="breadcrumb__title" itemprop="name">Account</span>
+          
+
+          <meta itemprop="position" content="2">
+        </li>
+      
+    </ul>
+  </div>
+</nav>
+
+  <div class="page__header-wrapper">
+    <div class="container">
+      <h1 class="page__title">Forgot Page</h1>
+    </div>
+  </div>
+</header>
+
+<div class="page__content">
+  <section class="recover-form" style="display:block">
+    <div class="container container--shrink">
+      <form method="post" action="{% url 'forgotPassword' %}" accept-charset="UTF-8" class="form--shrinked"><input type="hidden" name="form_type" value="recover_customer_password" /><input type="hidden" name="utf8" value="✓" />
+        {% csrf_token %}
+        <div class="form__control ">
+          <label class="form__label" for="customer__email">Email</label>
+          <input type="email" id="customer__email" name="email" required="required" tabindex="1">
+        </div>
+
+        <div class="button-wrapper">
+          <button type="submit" class="button button--primary">Send instructions</button>
+        </div>
+      </form>
+    </div>
+  </section>
+</div>
+
+<footer class="page__footer">
+  <h4 class="page__footer-text">Not a member yet?</h4>
+  <a href="{% url 'register' %}" class="button button--secondary">Register now</a>
+</footer>
+      </main>
+{% include 'includes/footer.html' %}
+
+    
+  </body>
+{% endblock %}

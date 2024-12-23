@@ -1,0 +1,182 @@
+
+{% load static %}
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="max-age=604800" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+
+<link href="{% static './images/logo1.png' %}" rel="shortcut icon" type="image/x-icon">
+
+<!-- jQuery -->
+<script src="{% static 'js/jquery-2.0.0.min.js' %}" type="text/javascript"></script>
+
+<!-- Bootstrap4 files-->
+<script src="{% static 'js/bootstrap.bundle.min.js' %}" type="text/javascript"></script>
+<link href="{% static 'css/bootstrap.css' %}" rel="stylesheet" type="text/css"/>
+
+<!-- Font awesome 5 -->
+<link href="{% static 'fonts/fontawesome/css/all.min.css' %}" type="text/css" rel="stylesheet">
+
+<!-- custom style -->
+<link href="{% static 'css/ui.css' %}" rel="stylesheet" type="text/css"/>
+<link href="{% static 'css/responsive.css' %}" rel="stylesheet" media="only screen and (max-width: 1200px)" />
+
+<!-- custom javascript -->
+<script src="{% static 'js/script.js' %}" type="text/javascript"></script>
+<!-- font awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<!-- for custom .css -->
+<link href="{% static 'css/custom.css' %}" rel="stylesheet" type="text/css"/>
+<link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+<!-- for paypal -->
+<script type="text/javascript">
+/// some script
+
+// jquery ready start
+$(document).ready(function() {
+	// jQuery code
+
+});
+// jquery end
+</script>
+<style>
+    @media only screen and (max-width: 400px) {
+       .product_img{
+        width:90px!important;
+        height:90px!important;
+       }
+       .container{
+        padding:20px!important;
+       }
+    
+      }
+
+      @media only screen and (max-width:300px){
+        
+      }
+</style>
+</head>
+<body>
+
+   
+    
+    <div class="container" style="margin-top: 50px;">
+        <center><i class="fas fa-check-circle" style="font-size: 72px;margin-bottom: 20px;color: #28A745;"></i></center>
+        <h2 class="text-center">Payment Successful</h2>
+        <br>
+        <div class="text-center">
+            <a href="/" class="btn btn-success">Shop more</a>
+        </div>
+    </div>
+    
+    <div class="container" style="margin: 0 auto;max-width:900px;;padding: 50px;background: #f1f1f1;margin-top: 50px;margin-bottom: 50px;">
+        <div class="row invoice row-printable">
+            <div class="col-md-12">
+                <!-- col-lg-12 start here -->
+                <div class="panel panel-default plain" id="dash_0">
+                    <!-- Start .panel -->
+                    <div class="panel-body p30">
+                        <div class="row">
+                            <!-- Start .row -->
+                            <div class="col-lg-6">
+                                <!-- col-lg-6 start here -->
+                                <div class="invoice-logo">
+                                    <img src="{% static '/img/image.png' %}" alt="Invoice logo" style="max-height: 120px;">
+                                </div>
+                                
+                            </div>
+                            <!-- col-lg-6 end here -->
+                            <div class="col-lg-6">
+                                <!-- col-lg-6 start here -->
+                                <div class="invoice-from">
+                                    <ul class="list-unstyled text-right">
+                                        <li><strong>Invoiced To</strong></li>
+                                        <li>{{order.full_name}}</li>
+                                        <li>{{order.full_address}}</li>
+                                        <li>{{order.city}}, {{order.state}}</li>
+                                        <li>{{order.country}}</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- col-lg-6 end here -->
+                            <div class="col-lg-12">
+                                <!-- col-lg-12 start here -->
+                                <div class="invoice-details mt25">
+                                    <div class="well">
+                                        <ul class="list-unstyled mb0">
+                                            <li><strong>Order</strong> #{{order_number}}</li>
+                                            <li><strong>Transaction ID</strong> {{transID}}</li>
+                                            <li><strong>Order Date:</strong> {{order.created_at}}</li>
+                                            <li><strong>Status:</strong> {{payment.status}}</li>
+                                        </ul>
+                                    </div>
+                                </div>
+    
+                                <div class="invoice-items">
+                                    <div class="table-responsive table-responsive-sm table-responsive-md table-responsive-lg" style="overflow: hidden; outline: none;" tabindex="0">
+                                        <table class="table table-bordered">
+                                            <thead>
+                                                {% for item in ordered_products %}
+                                                <tr>
+                                                    <th class="per70 text-center">Products</th>
+                                                    <th class="per5 text-center">Qty</th>
+                                                    <th class="per25 text-center">Total</th>
+                                                                    <tr>
+                                                    {% if '/static/' in item.product.image.url %}
+                                                    <td><img class='product_img' style='width:120px;height:120px;' src='{{item.product.image}}'/>{{item.product.product_name|truncatechars:15}}</td>
+                                                    {%else%}
+                                                    <td><img class='product_img' style='width:120px;height:120px;' src='{{item.product.image.url}}'/></td>
+                                                    {% endif %}
+                                                    <td class="text-center">{{item.quantity}}</td>
+                                                    <td class="text-center">${{item.product_price}}EUR</td>
+                                                </tr>
+                                              {% endfor %}
+                                            </tbody>
+                                            <tfoot>
+                                                <tr>
+                                                    <th colspan="2" class="text-right">Sub Total:</th>
+                                                    <th class="text-center">${{subtotal}} EUR</th>
+                                                </tr>
+                                                <tr>
+                                                    <th colspan="2" class="text-right">Tax:</th>
+                                                    <th class="text-center">${{0}} EUR</th>
+                                                </tr>
+    
+                                                <tr>
+                                                    <th colspan="2" class="text-right">Grand Total:</th>
+                                                    <th class="text-center">${{order.total}} EUR</th>
+                                                </tr>
+                                            </tfoot>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="invoice-footer mt25">
+                                    <p class="text-center">Thank you for shopping with us!</p>
+                                </div>
+                            </div>
+                            <!-- col-lg-12 end here -->
+                        </div>
+                        <!-- End .row -->
+                    </div>
+                </div>
+                <!-- End .panel -->
+            </div>
+            <!-- col-lg-12 end here -->
+        </div>
+        </div>
+    
+    
+    <style>
+        .invoice-logo img {
+            max-height: 40px !important; /* Add !important to override any other conflicting styles */
+        }
+    </style>
+
+</body>
+</html>    

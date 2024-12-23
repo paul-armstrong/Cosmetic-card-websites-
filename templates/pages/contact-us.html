@@ -1,0 +1,130 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block meta %}
+    <meta name="title" content="Contact Us - Maple Court Yard">
+    <meta name="description" content="Contact Maple Court Yard for inquiries, customer support, or partnership opportunities regarding our handmade greeting cards.">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Contact Us - Maple Court Yard">
+    <meta property="og:description" content="Contact Maple Court Yard for inquiries, customer support, or partnership opportunities regarding our handmade greeting cards.">
+    <meta property="og:image" content="https://maplecourtyarddesigns.co.uk/static/img/image.png">
+    <meta property="og:url" content="https://www.maplecourtyard.com/contact_us/">
+{% endblock %}
+{% block content %}
+          <body class="kagami--v5 template-product ">
+      {% include 'includes/header.html' %}
+
+<main id="main" class="main" role="main">
+        <header class="page__header">
+  <nav class="breadcrumb" role="navigation" aria-label="Breadcrumb">
+  <div class="inner">
+    <ul class="breadcrumb__list" itemscope itemtype="http://schema.org/BreadcrumbList">
+      <li class="breadcrumb__item" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <span class="breadcrumb__title" itemprop="name"><a href="{% url 'index' %}">Home</a></span>
+        <meta itemprop="position" content="1">
+      </li>
+
+      
+        <li data-breadcrumb-separator="/" class="breadcrumb__item breadcrumb__item--active" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+          
+            <span class="breadcrumb__title" itemprop="name">Contact Us</span>
+          
+
+          <meta itemprop="position" content="2">
+        </li>
+      
+    </ul>
+  </div>
+</nav>
+
+  <div class="page__header-wrapper">
+    <div class="container">
+      <h1 class="page__title">Contact Us</h1>
+    </div>
+  </div>
+</header>
+
+<section class="page__content">
+  
+  <div class="container container--shrink container_contact">
+    <div class="page__description">
+      
+<h2 class="page__title">GET IN TOUCH</h2>
+<br>
+<p>For order enquiries, help with ordering or any advice, you can email us direct at <strong><a style="color: #dc7f41;" href="#">info@maplecourtyarddesigns.co.uk</a></strong>. We'll respond to your email as soon as possible.</p>
+<br>
+<h2 class="page__title">FAQ</h2>
+<br>
+<p>Many inquiries we receive are common questions people ask every time. So for our customers' convenience we answered a few of them in our <strong><a href="{% url 'faqs' %}" style="color: #dc7f41;">FAQ section</a></strong>.</p>
+<br>
+<h2 class="page__title">SOCIAL CONTACT LINKS</h2>
+<br>
+<p>Get in touch on Instagram - <strong><a style="color: #dc7f41;" href="#" target="_blank">@maplecourtyarddesigns</a></strong></p>
+<p>Get in touch on Facebook messenger - <strong><a style="color: #dc7f41;" href="#" target="_blank">@maplecourtyarddesigns</a></strong></p>
+    </div>
+    <br>
+  </div>
+
+  
+  
+
+
+    <div class="container container--shrink container_contact" style="display:none;">
+      <h2 class="page__title">Send us a message</h2>
+      <br>
+      
+    <div class="contact">
+      <form method="post" action="#" id="contact_form" accept-charset="UTF-8" class="contact__form"><input type="hidden" name="form_type" value="contact" /><input type="hidden" name="utf8" value="✓" />
+        
+
+        
+
+        <div class="form__control">
+          <input type="text" id="contact__name" name="contact[name]" placeholder="Your Name">
+        </div>
+
+        <div class="form__control">
+          <input type="email" id="contact__email" name="contact[email]" required="required" placeholder="Email Address">
+        </div>
+      
+        <div class="form__control">
+          <input type="text" id="contact__subject" name="contact[Subject]" placeholder="Subject">
+        </div>
+
+
+        <div class="form__control">
+          <textarea rows="5" cols="75" id="contact__body" name="contact[body]" required="required" placeholder="Message"></textarea>
+        </div>
+
+        <input type="submit" class="button button--primary" value="Submit">
+      </form>
+    </div>
+  
+      <br><br>
+    </div>
+  
+  <div class="container container--shrink container_contact">
+    <div class="page__description">
+      <h2 class="page__title">RETURN ADDRESS</h2><br>
+      <p style='font-weight:bold;'>
+        4 Kendal Rd
+        Kirkby
+        Liverpool
+        L33 2ED</p>
+        <p style='font-weight:bold;'>KirKby</p>
+        <p style='font-weight:bold;'>Liverpool</p>
+        <p style='font-weight:bold;'>L33 2ED</p>
+      <p><strong style="text-decoration:underline;cursor:pointer;">Please note that we are an online business only.</strong></p>
+      <br><br>
+    </div>
+  </div>
+  
+
+
+</section>
+
+<div id="shopify-section-contact-map" class="shopify-section shopify-section__featured-map"></div>
+      </main>
+
+      {% include 'includes/footer.html' %}
+      </body>
+      {% endblock %}

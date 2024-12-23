@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+  <body class="kagami--v5 template-customers-register ">
+  {% include 'includes/header.html' %}
+    <main id="main" class="main" role="main">
+        <header class="page__header">
+  <nav class="breadcrumb" role="navigation" aria-label="Breadcrumb">
+  <div class="inner">
+    <ul class="breadcrumb__list" itemscope itemtype="http://schema.org/BreadcrumbList">
+      <li class="breadcrumb__item" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <span class="breadcrumb__title" itemprop="name"><a href="{% url 'index' %}">Home</a></span>
+        <meta itemprop="position" content="1">
+      </li>
+
+      
+        <li data-breadcrumb-separator="/" class="breadcrumb__item breadcrumb__item--active" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+          
+            <span class="breadcrumb__title" itemprop="name">Create Account</span>
+          
+
+          <meta itemprop="position" content="2">
+        </li>
+      
+    </ul>
+  </div>
+</nav>
+
+  <div class="page__header-wrapper">
+    <div class="container">
+      <h1 class="page__title">Create account</h1>
+    </div>
+  </div>
+</header>
+
+<div class="page__content">
+  <section class="register-form">
+    <div class="container container--shrink">
+      {% include "includes/alert.html"%}
+      <form method="POST" action="{% url 'register' %}" id="create_customer"  class="form--shrinked" >
+        
+       {% csrf_token %}
+        <div class="form__control ">
+          <label class="form__label" for="customer__first-name">First name</label>
+          <input type="text" id="customer__first-name" name="first_name">
+        </div>
+
+        <div class="form__control ">
+          <label class="form__label" for="customer__last-name">Last name</label>
+          <input type="text" id="customer__last-name" name="last_name">
+        </div>
+
+        <div class="form__control ">
+          <label class="form__label" for="customer__email">Email</label>
+          <input type="email" id="customer__email" name="email" required="required">
+        </div>
+
+        <div class="form__control ">
+          <label class="form__label" for="customer__password">Password</label>
+          <input type="password" id="customer__password" name="password" required="required">
+        </div>
+     
+{% comment %}       
+        <div class="form__control form__control--newsletter">
+          <input type="hidden" name="customer[accepts_marketing]" value="" />
+          <input type="checkbox" id="register_newsletter" name="accepts_marketing"/>
+          <label for="register_newsletter">Subscribe to stay updated with new products, promotions and offers!</label>
+        </div> {% endcomment %}
+      
+
+        <div class="button-wrapper">
+          <input type="submit" class="button button--primary" value="create my account" >
+        </div>
+      </form>
+    </div>
+  </section>
+</div>
+
+<footer class="page__footer">
+  <h4 class="page__footer-text">Already have an account?</h4>
+  <a href="{% url 'Login' %}" class="button button--secondary">Login now</a>
+</footer>
+      </main>
+
+  {% include 'includes/footer.html' %}
+  </body>
+{% endblock %}

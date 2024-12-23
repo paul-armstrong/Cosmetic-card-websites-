@@ -1,0 +1,21 @@
+{% if messages %}
+    {% for message in messages %}
+    <div style="color:red;" id="message{{ message.id }}" class="container">
+        <div{% if message.tags %} class="alert alert-primary" {% endif %} role="alert">
+            <button style="color:red;" onclick="remover('{{ message.id }}');" type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span></button>
+            
+            {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Important: {% endif %}
+            {{ message }}
+        </div>
+    </div>
+    <script>
+        // Remove the message after 3 seconds
+        setTimeout(function() {
+            var messageElement = document.getElementById('message{{ message.id }}');
+            if (messageElement) {
+                messageElement.remove();
+            }
+        }, 3000); // 3000 milliseconds = 3 seconds
+    </script>
+    {% endfor %}
+{% endif %}

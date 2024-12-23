@@ -1,0 +1,189 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block style %}
+<style>
+  @media only screen and (max-width: 625px) {
+   
+    
+    .cart--desktop .cart-item__price-header {
+      display: block!important;
+    }
+    .cart-item__product, .cart-item__info {
+      vertical-align:initial; 
+  }
+
+    .hidden{
+      display:none;
+    }
+
+  .cart--desktop .cart-item__price, .cart--desktop .cart-item__price-header {
+    display: block;
+}
+}
+  @media only screen and (max-width: 1025px) {
+      .mobile-view{
+       display:none;
+      }
+      
+      .cart--desktop .cart-item__price-header {
+        display: block!important;
+    }
+
+    .cart--desktop .cart-item__price, .cart--desktop .cart-item__price-header {
+      display: block;
+  }
+  }
+  </style>
+{% endblock %}
+{% block content %}
+  <body class="kagami--v5 template-customers-login ">
+    {% include 'includes/header.html' %}
+  
+   <main id="main" class="main" role="main">
+    <header class="page__header">
+        <nav class="breadcrumb" role="navigation" aria-label="Breadcrumb">
+            <div class="inner">
+                <ul class="breadcrumb__list" itemscope="" itemtype="http://schema.org/BreadcrumbList">
+                    <li class="breadcrumb__item" itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
+                        <span class="breadcrumb__title" itemprop="name"><a href="https://www.lotusartstudio.co.uk">Home</a></span>
+                        <meta itemprop="position" content="1">
+                    </li>
+                    <li data-breadcrumb-separator="/" class="breadcrumb__item breadcrumb__item--active" itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
+                        <span class="breadcrumb__title" itemprop="name">Account</span>
+                        <meta itemprop="position" content="2">
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    
+        <div class="page__header-wrapper">
+            <div class="container">
+                <h1 class="page__title">My Account</h1>
+    
+                <div class="page__action">
+                    <a href="/logout/" class="button button--secondary">Logout</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+
+
+    <div class="page__content">
+        <div class="inner inner-account">
+            <div class="grid grid--large">
+                <section class="account__orders desktop grid__cell 2/3--handheld-and-up">
+                    {% if orders %}
+                    <div class="cart--desktop desktop">
+      
+                        <table>
+                          <thead>
+                            <tr>
+                              <th>Your order</th>
+                              <th class="cart-item__price-header">Billing Name</th>
+                              <th>Phone</th>
+                              <th>Total price</th>
+                              <th class='hidden'>Created at</th>
+                            </tr>
+                          </thead>
+                  
+                          <tbody>
+                            {% for order in orders %}
+                            
+                              <tr data-variant-id="11281174462500" data-index="1">
+                                <td class="cart-item__product">
+                                  <a href="{% url 'order_details' order.order_number %}">
+                                    {{order.order_number}}
+                                   
+                                  </a>
+                                </td>
+                  
+                                <td class="cart-item__info table__left">
+                                  
+                                    {{order.full_name}}
+                                </td>
+                  
+                                <td class="cart-item__price" data-money-convertible="">{{order.phone}}</td>
+                  
+                                <td class="cart-item__quantity">
+                                  {{order.total}}USD
+                                </td>
+                  
+                                <td class="cart-item__subtotal hidden" data-money-convertible="" >{{order.created_at|date:"m/d/Y"}}</td>
+                                </td>
+                              </tr>
+                              {% endfor %}
+                            
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="cart--mobile desktop">
+      
+                        <table>
+                          <thead>
+                            <tr>
+                              <th>Your order</th>
+                              <th class="cart-item__price-header">Billing Name</th>
+                              <th>Phone</th>
+                              <th>Total price</th>
+                              <th>Created at</th>
+                            </tr>
+                          </thead>
+                  
+                          <tbody>
+                            {% for order in orders %}
+                            
+                              <tr data-variant-id="11281174462500" data-index="1">
+                                <td class="cart-item__product">
+                                  <a href="{% url 'order_details' order.order_number %}">
+                                    {{order.order_number}}
+                                   
+                                  </a>
+                                </td>
+                  
+                                <td class="cart-item__info table__left">
+                                  
+                                    {{order.full_name}}
+                                </td>
+                  
+                                <td class="cart-item__price" data-money-convertible="">{{order.phone}}</td>
+                  
+                                <td class="cart-item__quantity">
+                                  {{order.total}}USD
+                                </td>
+                  
+                                <td class="cart-item__subtotal" data-money-convertible="">{{order.created_at|date:"m/d/Y"}}</td>
+                                </td>
+                              </tr>
+                              {% endfor %}
+                            
+                          </tbody>
+                        </table>
+                      </div>
+                    
+                    {% else %}
+                    <div class="alert alert--account">
+                        <h3 class="alert__title">You haven't placed any orders yet.</h3>
+                    </div>
+
+                    {% endif %}
+                </section>
+    
+                <div class="grid__cell 1/3--handheld-and-up mobile-view">
+                    <section class="account__address account__address--main">
+                        <a href="/account/addresses" class="link link--primary">Manage Addresses (0)</a>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+    
+   </main>
+{% include 'includes/footer.html' %}
+
+    
+  </body>
+{% endblock %}

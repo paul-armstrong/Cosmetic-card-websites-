@@ -1,0 +1,150 @@
+ {% load static %}
+
+  <div id="shopify-section-newsletter" class="shopify-section shopify-section__newsletter">
+         </div>
+         <div id="shopify-section-footer" class="shopify-section shopify-section__footer">
+            <footer class="footer" role="contentinfo">
+               <div class="inner">
+                  <div class="footer__wrapper">
+                     <section class="footer__module footer__links">
+                        <ul class="footer__linklist">
+                           <li class="footer__linklist-item">
+                              <a href={% url 'faqs' %} class="footer__linklist-link">Faqs</a>
+                           </li>
+                                                    <li class="footer__linklist-item">
+                              <a href="{% url 'terms_and_conditions' %}" class="footer__linklist-link">Terms</a>
+                           </li>
+                           <li class="footer__linklist-item">
+                              <a href="{% url 'privacy_policy' %}" class="footer__linklist-link">Privacy</a>
+                           </li>
+                          
+                          <!-- <li class="footer__linklist-item">
+                              <a href="{% url 'customer_reviews' %}" class="footer__linklist-link">Reviews</a>
+                           </li>-->
+                           <li class="footer__linklist-item">
+                              <a href="{% url 'about_us' %}" class="footer__linklist-link">About us</a>
+                           </li>
+                           <li class="footer__linklist-item">
+                              <a href="{% url 'contact_us' %}" class="footer__linklist-link">Contact us</a>
+                           </li>
+
+                           <li class="footer__linklist-item">
+                              <a href="#"  rel="nofollow" class="footer__linklist-link">Made By</a>
+                           </li>
+                        </ul>
+                     </section>
+                     <section class="footer__module footer__newsletter">
+                       <!-- <h3 class="footer__title">SIGN UP AND GET 10% OFF YOUR FIRST ORDER</h3>-->
+                        <div class="klaviyo-form-KhHKxu footer__newsletter-form"></div>
+                        <p class="footer__gdpr-notice"><em>By signing up, you agree to receive our newsletters, promotions and
+                           other commercial messages in accordance with our <a  href="{% url 'privacy_policy' %}"">privacy
+                           policy</a>. You may unsubscribe at any time.</em>
+                        </p>
+                     </section>
+                  </div>
+               </div>
+               <div class="footer__misc">
+                  <div class="inner">
+                     <p class="footer__copyright">
+                        © <a href="{% url 'index' %}">Maple Court Yard</a> - Handmade Greeting Cards For All Reasons
+                     </p>
+                     <section class="footer__payment-methods">
+                        <ul class="social-media social-media--inline">
+                           <li class="social-media__item">
+                              <a href="#" target="_blank">
+                                 <svg class="icon icon-facebook">
+                                    <use xlink:href="#icon-facebook">
+                                       <title>Facebook</title>
+                                    </use>
+                                 </svg>
+                              </a>
+                           </li>
+                           <li class="social-media__item">
+                              <a href="#" target="_blank">
+                                 <svg class="icon icon-instagram">
+                                    <use xlink:href="#icon-instagram">
+                                       <title>Instagram</title>
+                                    </use>
+                                 </svg>
+                              </a>
+                           </li>
+                        </ul>
+                     </section>
+                  </div>
+               </div>
+            </footer>
+            <a href="#" class="back-to-top" title="Back to the top">
+               <svg class="icon icon-back-to-top-arrow">
+                  <use xlink:href="#icon-back-to-top-arrow">
+                  </use>
+               </svg>
+            </a>
+         </div>
+      </div>
+          <style>
+        /* CSS Styles for the loader */
+        .loader {
+            border: 4px solid #f3f3f3; /* Light grey */
+            border-top: 4px solid #3498db; /* Blue */
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: auto;
+            margin-top: 20px;
+            display: none; /* Initially hidden */
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 9999; /* Ensure it's above other elements */
+            background-color: rgba(255, 255, 255, 0.5); /* Semi-transparent background */
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+        <div id="loader" class="loader"></div>
+        <script>
+            window.addEventListener('load', function() {
+            console.log("loading")
+            var loader = document.getElementById('loader');
+            loader.style.display = 'none'; // Hide loader when the page has finished loading
+        });
+
+        document.addEventListener("DOMContentLoaded", function(event) {
+                    console.log("load completed")
+
+            var loader = document.getElementById('loader');
+            loader.style.display = 'block'; // Show loader when the DOM content is fully loaded
+        });
+    </script>
+     <!-- <div class="quick-shop modal modal--large remodal">
+         <div class="quick-shop__spinner spinner-container spinner-container--large">
+            <div class="spinner spinner--circle"></div>
+         </div>
+      </div>-->
+
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" type="text/javascript"></script>
+      <script src="{% static 'cdn/shop/t/64/assets/modernizr.minc92c.js' %}"
+         type="text/javascript"></script>
+      <script
+         src="https://cdn.polyfill.io/v2/polyfill.min.js"
+         type="text/javascript"></script>
+         <script src="{% static 'cdn/shop/t/64/assets/libs7737.js' %}" type="text/javascript"></script>
+      <script src="{% static 'cdn/shop/t/64/assets/scriptcf7b.js' %}" type="text/javascript"></script>
+
+
+      <!-- Hide Special Delivery info -->
+      <!-- Hide RM24 Delivery info -->
+      <style>
+      </style>
+      <!-- Hide International Delivery info -->
+      <style>
+         .international_delivery_available {
+         display: none;
+         }
+      </style>
+  

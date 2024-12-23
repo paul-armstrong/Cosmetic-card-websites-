@@ -1,0 +1,205 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Our Products{% endblock %}
+
+{% block meta %}
+    {% if collection %}
+        <meta name="title" content="Handmade Greeting Cards Collection - {{ collection.collection }} | Maple Court Yard">
+        <meta name="index" content="greeting {{collection.collection}} cards, handmade cards, personalized cards, custom greeting cards, {{ collection.collection }}, Maple Court Yard">
+        <meta name="description" content="Explore our {{ collection.collection }} collection of handmade greeting cards at Maple Court Yard. Find the perfect personalized card for any occasion.">
+        <meta property="og:type" content="website">
+        <meta property="og:title" content="Handmade Greeting Cards - {{ collection.collection }} | Maple Court Yard">
+        <meta property="og:description" content="Discover our unique {{ collection.name }} collection of handmade greeting cards. Personalize your card today at Maple Court Yard!">
+      {% if '/static/' in collection.image.url %}
+        <meta property="og:image" content="https://maplecourtyarddesigns.co.uk{{collection.image}} ">
+                     {% else %}
+        <meta property="og:image" content="https://maplecourtyarddesigns.co.uk{{collection.image.url}}">
+                     {% endif %}
+        <meta property="og:url" content="https://www.maplecourtyard.com/products/{{ collection.slug }}">
+         <meta name="keywords" content="greeting cards, handmade cards, personalized cards, custom greeting cards, Maple Court Yard, {{collection.collection}}">
+    {% else %}
+        <meta name="title" content="Handmade Greeting Cards - Shop All Products | Maple Court Yard">
+        <meta name="index" content="greeting cards, handmade cards, personalized cards, custom greeting cards, Maple Court Yard, all products">
+        <meta name="description" content="Browse our wide selection of handmade greeting cards for every occasion. Find the perfect personalized card at Maple Court Yard.">
+        <meta property="og:type" content="website">
+        <meta property="og:title" content="Handmade Greeting Cards - Shop All Products | Maple Court Yard">
+        <meta property="og:description" content="Explore our diverse range of handmade greeting cards for all occasions at Maple Court Yard. Personalize your card today!">
+        <meta property="og:image" content="https://maplecourtyarddesigns.co.uk/static/img/image.png">
+        <meta property="og:url" content="https://www.maplecourtyard.com/products/">
+         <meta name="keywords" content="greeting cards, handmade cards, personalized cards, custom greeting cards, Maple Court Yard, all products">
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+<style>
+   .rating-star i{
+   color: #c38052 !important;
+   }
+   .label-rating {
+   margin-left: 7px;
+   display: inline-block;
+   vertical-align: middle;
+   }
+   /* rating-list */
+   .rating-stars {
+   display: inline-block;
+   vertical-align: middle;
+   list-style: none;
+   margin: 0;
+   padding: 0;
+   position: relative;
+   white-space: nowrap;
+   clear: both;
+   }
+   .rating-stars i {
+   font-size: 14px;
+   display: inline;
+   }
+   .rating-stars img {
+   height: 14px;
+   max-width: none;
+   }
+   .rating-stars li {
+   display: block;
+   text-overflow: clip;
+   white-space: nowrap;
+   z-index: 1;
+   }
+   .rating-stars li.stars-active {
+   z-index: 2;
+   position: absolute;
+   top: 0;
+   left: 0;
+   overflow: hidden;
+   }
+   .rating-stars li.stars-active i {
+   color: orange;
+   }
+   .rating-stars.stars-lg img {
+   height: 20px;
+   max-width: none;
+   }
+</style>
+<body class="kagami--v5 template-collection ">
+   {% include 'includes/header.html' with collections=collections %}
+   <main id="main" class="main" role="main">
+      <div id="shopify-section-collection-template" class="shopify-section shopify-section__collection">
+         <header class="page__header ">
+            <div class="page__header-wrapper">
+               <div class="container">
+                  {% if collection %}
+                  <h1 class="page__title">{{collection.collection}}</h1>
+                  {% else %}
+                  <h1 class="page__title">All Products</h1>
+                  {% endif %}
+               </div>
+            </div>
+         </header>
+         <div class="inner inner-collection">
+            <div class="collection__filters">
+               <div class="styled-select collection-filter collection-filter--sorter ">
+                  <svg class="icon icon-dropdown-arrow">
+                     <use xlink:href="#icon-dropdown-arrow">
+                     </use>
+                  </svg>
+                  <select id="sort-by">
+                     <option value="recommended">Recommended</option>
+                     <option value="best-selling">Most popular</option>
+                     <option value="price-ascending">Lowest price</option>
+                     <option  value="price-descending">Highest price</option>
+                     <option selected value="created-descending">Most recent</option>
+                  </select>
+               </div>
+            </div>
+         </div>
+         <section class="inner inner-collection">
+            <div id="collection" class="collection collection--grid grid grid--gallery grid--middle">
+               {% for product in products %}
+               <div class="collection__item product-item grid__cell 1/2 1/2--handheld 1/4--lap-and-up">
+                  <div class="product-item__inner">
+                     <div class="product-item__labels">
+                     </div>
+                     <a href="{% url 'get_product' product_name=product.slug %}" class="product-item__image">
+                        <div class="product-item__image-wrapper">
+                           <div class="aspect-ratio" style="padding-bottom: 100.0%">
+                              {% if '/static/' in product.image.url %}
+                              <img src={{product.image}} class="" data-sizes="auto" data-widths="[200,300,400,600,800,900,1000,1200]" alt="{{product.product_name}}">
+                              {% else %}
+                              <img src={{product.image.url}}  data-sizes="auto" data-widths="[200,300,400,600,800,900,1000,1200]" alt="{{product.product_name}}">
+                              {% endif %}
+                           </div>
+                        </div>
+                     </a>
+                     <div class="product-item__info">
+                        <h2 class="product-item__title">
+                           <a href="{% url 'get_product' product_name=product.slug %}">{{product.product_name}}</a>
+                        </h2>
+                        <p class="product-item__price" >£{{product.price}}</p>
+                        <div class="rating-star">
+                           {% if product.avg_rating %}
+                           <span>
+                           <i style="{% if product.avg_rating < 1 %} color:black!important{% endif %}" class="fa fa-star"
+                              aria-hidden="true"></i>
+                           <i style="{% if product.avg_rating < 2 %} color:black!important{% endif %}" class="fa fa-star"
+                              aria-hidden="true"></i>
+                           <i style="{% if product.avg_rating < 3 %} color:black!important{% endif %}" class="fa fa-star"
+                              aria-hidden="true"></i>
+                           <i style="{% if product.avg_rating < 4 %} color:black!important{% endif %}" class="fa fa-star"
+                              aria-hidden="true"></i>
+                           <i style="{% if product.avg_rating < 5 %} color:black!important{% endif %}" class="fa fa-star"
+                              aria-hidden="true"></i>
+                           </span>
+                           {% else %}
+                           <span>
+                           <i style="color:black!important" class="fa fa-star"
+                              aria-hidden="true"></i>
+                           <i style="color:black!important" class="fa fa-star"
+                              aria-hidden="true"></i>
+                           <i style="color:black!important" class="fa fa-star"
+                              aria-hidden="true"></i>
+                           <i style="color:black!important" class="fa fa-star"
+                              aria-hidden="true"></i>
+                           <i style="color:black!important" class="fa fa-star"
+                              aria-hidden="true"></i>
+                           </span>
+                           {% endif %}
+                           ({{product.reviews_count}} Reviews)
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               {% endfor %}
+            </div>
+         </section>
+      </div>
+   </main>
+   {% include 'includes/footer.html' %}
+   <script>
+      function renderData(data) {
+      const contentDiv = document.getElementById('collection');
+      contentDiv.innerHTML = data.content;
+      }
+
+       // Function to fetch data with query parameters
+      async function fetchDataWithQueryParams(queryParam) {
+      try {
+        const response = await fetch(`?filter=${queryParam}`);
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const data = await response.json(); // Assuming the response is text
+        console.log(data.json)
+        renderData(data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+      }
+
+      document.getElementById('sort-by').addEventListener('change', async(event) => {
+      const selectedValue = event.target.value;
+      await fetchDataWithQueryParams(selectedValue);
+      });
+   </script>
+</body>
+{% endblock %}

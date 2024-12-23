@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block title %}
+Our Collection
+{% endblock %}
+{% block meta %}
+    <meta name="title" content="Explore Our Collection of Handmade Greeting Cards at Maple Court Yard">
+    <meta name="index" content="greeting cards, handmade cards, personalized cards, custom greeting cards, Maple Court Yard, all collections">
+    <meta name="description" content="Discover our diverse range of handmade greeting card collections at Maple Court Yard. Find the perfect cards for any occasion.">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Explore Our Collection of Handmade Greeting Cards at Maple Court Yard">
+    <meta property="og:description" content="Discover our diverse range of handmade greeting card collections at Maple Court Yard. Find the perfect cards for any occasion.">
+    <meta property="og:image" content="https://maplecourtyarddesigns.co.uk/static/img/image.png">
+    <meta property="og:url" content="https://www.maplecourtyarddesigns.com/collection/">
+    <meta name="keywords" content="greeting cards, handmade cards, personalized cards, custom greeting cards, Maple Court Yard, all collections">
+{% endblock %}
+{% block content %}
+
+{% include 'includes/header.html' %}
+<main id="main" class="main" role="main">
+   <div id="shopify-section-list-collections-template" class="shopify-section">
+      <header class="page__header">
+
+         <div class="page__header-wrapper">
+            <div class="container">
+               <h1 class="page__title">All collections</h1>
+            </div>
+         </div>
+      </header>
+      <div class="inner inner-all-collections">
+         <div class="list-collections list-collections--padded list-collections--grid grid grid--middle grid--gallery">
+            {% for collection in collections %}
+            <div class="list-collections__item collection grid__cell 1/2 1/3--lap-and-up 1/4--desk 1/5--large-widescreen" >
+               <a href="{% url 'collection' collection_slug=collection.collection_slug %}" class="collection__link" style="background: url({{collection.image.url}})">
+                  <div class="aspect-ratio" style="padding-bottom: 140.0%">
+                     {% if '/static/' in collection.image.url %}
+
+                     <img src={{collection.image}} class="" data-sizes="auto" data-widths="[200,300,400,600,800,900,1000,1200]" alt="{{product.product_name}}">
+                     {% else %}
+
+                     <img src={{collection.image.url}} class="" data-sizes="auto" data-widths="[200,300,400,600,800,900,1000,1200]" alt="{{product.product_name}}">
+                     {% endif %}
+
+                  </div>
+                  <div class="collection__overlay"></div>
+               </a>
+               <a href="collections/handmade-birthday-cards.html" class="collection__link">
+                  <h3 class="collection__title">{{collection.collection}} </h3>
+                  <p class="col_short_desc">{{collection.description}}</p>
+               </a>
+            </div>
+            {% endfor %}
+         </div>
+      </div>
+   </div>
+</main>
+{% include 'includes/footer.html' %}
+</body>
+{% endblock %}

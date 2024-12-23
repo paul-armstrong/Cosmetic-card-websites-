@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+  <body class="kagami--v5 template-cart ">
+    {% include 'includes/header.html' %}
+    <main id="main" class="main" role="main" style="display:flex;justify-content:center;align-items:center;">
+        <div  style="max-width:600px;margin:50 auto;text-align:center;">
+        <h1 style="font-size:48px;color:#dc3545;">Oops,404 Page Not Found!</h1>
+        <p style='font-size:18px;margin-bottom:30px;'>The requested URL was not found on this server. <a style="color:#007bff;text-decoration:none;" href="/">Go back to homepage</a></p>
+        </div>
+      
+    </main>
+    {% include 'includes/footer.html' %}
+  </body>
+{% endblock %}
